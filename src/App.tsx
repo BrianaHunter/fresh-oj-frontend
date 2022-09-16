@@ -1,9 +1,24 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
+// import PrivateRoute from "./components/PrivateRoute";
+import HomePage from "./pages/HomePage";
 
-function App() {
-  return <div className="App"></div>;
+export default function App() {
+  return (
+    <div className="App">
+      <Routes>
+        <Route
+          path="/"
+          element={
+            // <PrivateRoute>
+            <HomePage />
+            // </PrivateRoute>
+          }
+        />
+
+        {/* <Route path="/:profileUsername" element={<ProfileViewPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/login" element={<LoginPage />} /> */}
+      </Routes>
+    </div>
+  );
 }
-
-export default App;
