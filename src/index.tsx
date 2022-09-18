@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { MantineProvider } from "@mantine/core";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -11,7 +12,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{ cursorType: "pointer" }}
+      >
+        <App />
+      </MantineProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
