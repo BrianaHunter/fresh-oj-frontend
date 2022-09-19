@@ -15,12 +15,12 @@ export default function SignupPage() {
   return (
     <AppContainer>
       <Container size={420} my={100}>
-        <Title color="blue" align="center">
-          PopLink
+        <Title color="pink" align="center">
+          Fresh OJ
         </Title>
         <Paper withBorder shadow="sm" p={30} mt={30} radius="md">
           <Title align="center">Create Account</Title>
-          <Text color="dimmed" size="lg" align="center" mt={5}>
+          <Text color="green" size="lg" align="center" mt={5}>
             Already have an account?{" "}
             <Anchor
               component={Link}

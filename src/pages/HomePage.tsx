@@ -46,7 +46,7 @@ export default function HomePage() {
           <img className="w-full h-full  p-0 m-0" src={BackGroundImage} />
         </div>
         <Stack>
-          <Button color="tan">New Entry</Button>
+          <Button className="bg-tan-200">New Entry</Button>
           <div className="text-center">My Stats</div>
 
           <Carousel

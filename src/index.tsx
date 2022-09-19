@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
+import { AuthContextProvider } from "./context/auth.context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -17,7 +18,9 @@ root.render(
         withNormalizeCSS
         theme={{ cursorType: "pointer" }}
       >
-        <App />
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
       </MantineProvider>
     </BrowserRouter>
   </React.StrictMode>

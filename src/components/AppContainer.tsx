@@ -8,7 +8,16 @@ interface Props {
 export default function AppContainer({ children, header }: Props) {
   return (
     <div className="bg-tan-100">
-      <AppShell navbarOffsetBreakpoint="sm" padding="md" header={header}>
+      <AppShell
+        navbarOffsetBreakpoint="sm"
+        padding="md"
+        header={header}
+        styles={(theme) => ({
+          main: {
+            padding: "0px",
+          },
+        })}
+      >
         {children}
       </AppShell>
     </div>

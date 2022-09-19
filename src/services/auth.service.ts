@@ -1,4 +1,4 @@
-import { axios } from "../libs/axios";
+import { expressAPI } from "../libs/axios";
 import { signInWithPopup } from "firebase/auth";
 import { firebaseAuth, googleAuthProvider } from "../libs/firebase";
 import { queryClient } from "../libs/react-query";
@@ -19,7 +19,7 @@ export async function authenticateWithGoogle() {
 
 export async function signUpWithGoogle() {
   const firebaseUser = await authenticateWithGoogle();
-  const { data: user } = await axios.post<User>("/auth/signup", {
+  const { data: user } = await expressAPI.post<User>("/auth/signup", {
     uid: firebaseUser.uid,
     email: firebaseUser.email,
     displayName: firebaseUser.displayName,
@@ -35,13 +35,8 @@ export async function loginWithGoogle() {
 }
 
 export async function getLoginUser(uid: string) {
-  const { data: user } = await axios.get<User>("/auth/login", {
+  const { data: user } = await expressAPI.get<User>("/auth/login", {
     params: { uid },
   });
   return user;
-
-  // SAME AS LINES ABOVE WITHOUT RENAMING/DESTRUCTURING
-
-  //   const response = await axios.get<User>("/auth/login", { params: { uid } });
-  //   return response.data
 }
