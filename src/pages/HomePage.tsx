@@ -20,6 +20,7 @@ import { useCallback, useEffect, useState } from "react";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
 import BackGroundImage from "../images/background-image.jpg";
+import AppFooter from "../components/AppFooter";
 
 export default function HomePage() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -56,15 +57,9 @@ export default function HomePage() {
             getEmblaApi={setEmbla}
             initialSlide={1}
           >
-            <Carousel.Slide className="border-2 border-radius: rounded border-black  p-0">
-              Enteries
-            </Carousel.Slide>
-            <Carousel.Slide className="border-2 border-radius: rounded border-black  p-0">
-              Moods
-            </Carousel.Slide>
-            <Carousel.Slide className="border-2 border-radius: rounded border-black  p-0">
-              Frequent
-            </Carousel.Slide>
+            <Carousel.Slide className="bg-white">Enteries</Carousel.Slide>
+            <Carousel.Slide className="bg-white">Moods</Carousel.Slide>
+            <Carousel.Slide className="bg-white">Frequent</Carousel.Slide>
             {/* ...other slides */}
           </Carousel>
           <Progress
@@ -78,6 +73,7 @@ export default function HomePage() {
             mx="auto"
           />
         </Stack>
+        <AppFooter />
       </AppContainer>
     </div>
   );
