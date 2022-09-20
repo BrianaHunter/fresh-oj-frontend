@@ -19,8 +19,9 @@ import { IconPlus } from "@tabler/icons";
 import { useCallback, useEffect, useState } from "react";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
-import BackGroundImage from "../images/background-image.jpg";
+import BackGroundImage from "../images/background-image-w-text.jpg";
 import AppFooter from "../components/AppFooter";
+import FreshOjLogo from "../images/FreshOJlogo.svg";
 
 export default function HomePage() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -42,7 +43,7 @@ export default function HomePage() {
   return (
     <div>
       <AppContainer header={<AppHeader />}>
-        <div className="p-0 m-0">
+        <div className="p-0 mt-10">
           <img className="w-full h-full  p-0 m-0" src={BackGroundImage} />
         </div>
         <Stack>
