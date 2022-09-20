@@ -11,7 +11,7 @@ export default function AccountMenu() {
 
   const handleLogout = async () => {
     await logout();
-    navigate("/signup");
+    navigate("/login");
   };
 
   console.log("user: ", user);
