@@ -22,6 +22,7 @@ import AppHeader from "../components/AppHeader";
 import BackGroundImage from "../images/background-image-w-text.jpg";
 import AppFooter from "../components/AppFooter";
 import FreshOjLogo from "../images/FreshOJlogo.svg";
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -47,7 +48,10 @@ export default function HomePage() {
           <img className="w-full h-full  p-0 m-0" src={BackGroundImage} />
         </div>
         <Stack>
-          <Button className="bg-tan-200">New Entry</Button>
+          <Link to="/entry">
+            <Button className="bg-tan-200 w-full">New Entry</Button>
+          </Link>
+
           <div className="text-center">My Stats</div>
 
           <Carousel
