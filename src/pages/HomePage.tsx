@@ -21,7 +21,6 @@ import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
 import BackGroundImage from "../images/background-image-w-text.jpg";
 import AppFooter from "../components/AppFooter";
-import FreshOjLogo from "../images/FreshOJlogo.svg";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {

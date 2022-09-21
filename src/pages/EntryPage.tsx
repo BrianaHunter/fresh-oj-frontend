@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { RichTextEditor } from "@mantine/rte";
-import { Button, Center, Container, Space, Title } from "@mantine/core";
+import {
+  Button,
+  Center,
+  Container,
+  Paper,
+  Radio,
+  Space,
+  Title,
+} from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
@@ -27,8 +35,29 @@ export default function EntryPage() {
             What's on your mind?
           </Title>
         </Center>
+
+        <Paper className="mt-5 p-3 px-7">
+          <Radio.Group
+            name="mood"
+            label="How do you feel?"
+            // description="This is anonymous"
+            spacing="xl"
+            // offset="md"
+            withAsterisk
+          >
+            <div className="flex justify-between w-full">
+              <Radio value="Overjoyed" label="Overjoyed" />
+              <Radio value="Happy" label="Happy" />
+              <Radio value="Okay" label="Okay" />
+              <Radio value="Sad" label="Sad" />
+              <Radio value="Mad" label="Mad" />
+              <Radio value="Anxious" label="Anxious" />
+            </div>
+          </Radio.Group>
+        </Paper>
+
         <RichTextEditor
-          classNames={{ root: "mt-10 h-[600px] overflow-y-scroll" }}
+          classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
           //   mt={40}
           value={value}
           controls={[
