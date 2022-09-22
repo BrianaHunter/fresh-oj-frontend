@@ -8,6 +8,10 @@ module.exports = {
           100: "#d2c3af",
           200: " #b9a58b",
         },
+        orangeSoda: {
+          100: "#e7c09b",
+          200: "#d9975a",
+        },
         gray: {
           50: "#f8f9fa",
           100: "#f1f3f5",

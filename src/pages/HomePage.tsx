@@ -13,6 +13,7 @@ import {
   Image,
   BackgroundImage,
   ColorInput,
+  Center,
 } from "@mantine/core";
 import { Carousel, Embla } from "@mantine/carousel";
 import { IconPlus } from "@tabler/icons";
@@ -47,8 +48,16 @@ export default function HomePage() {
           <img className="w-full h-full  p-0 m-0" src={BackGroundImage} />
         </div>
         <Stack>
-          <Link to="/entry">
-            <Button className="bg-tan-200 w-full">New Entry</Button>
+          <Link to="/entry" className="font-medium !no-underline">
+            <Center>
+              <Button
+                style={{ width: 600 }}
+                className="
+             bg-tan-200 hover:bg-orangeSoda-200  shadow-md shadow-black-900 "
+              >
+                New Entry
+              </Button>
+            </Center>
           </Link>
 
           <div className="text-center">My Stats</div>
