@@ -9,7 +9,7 @@ import {
   Space,
   Title,
 } from "@mantine/core";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
 
@@ -68,15 +68,17 @@ export default function EntryPage() {
           ]}
           onChange={onChange}
         />
-        <Button
-          className=""
-          mt="md"
-          variant="default"
-          size="sm"
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
+        <Link to="/suggestion">
+          <Button
+            className=""
+            mt="md"
+            variant="default"
+            size="sm"
+            onClick={handleSubmit}
+          >
+            Submit
+          </Button>
+        </Link>
       </Container>
     </AppContainer>
   );

@@ -1,9 +1,16 @@
 export type Suggestion = {
-  id: number;
-  title: string;
-  imageUrl: string;
+  Id: number;
+  Title: string;
+  ImageUrl: string;
+  LastUpdate: string;
+  HealthfinderUrl: string;
+  Categories: string;
 };
 
 export type SuggestionResults = {
-  results: Suggestion[];
+  Result: {
+    Resources: {
+      Resource: Suggestion[];
+    };
+  };
 };

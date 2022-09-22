@@ -6,5 +6,5 @@ export function fetchSuggestion() {
     .get<SuggestionResults>(
       "https://health.gov/myhealthfinder/api/v3/topicsearch.json?CategoryId=109"
     )
-    .then((response: { data: { results: any } }) => response.data.results);
+    .then((response) => response.data.Result.Resources.Resource);
 }
