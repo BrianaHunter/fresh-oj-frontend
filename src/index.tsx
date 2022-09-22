@@ -6,23 +6,27 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
 import { AuthContextProvider } from "./context/auth.context";
+import { QueryClientProvider, ReactQueryDevtools } from "./libs/react-query";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{ cursorType: "pointer" }}
-      >
-        <AuthContextProvider>
-          <App />
-        </AuthContextProvider>
-      </MantineProvider>
-    </BrowserRouter>
+    <QueryClientProvider>
+      <BrowserRouter>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{ cursorType: "pointer" }}
+        >
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
+        </MantineProvider>
+        <ReactQueryDevtools />
+      </BrowserRouter>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

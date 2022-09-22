@@ -14,6 +14,7 @@ import {
   BackgroundImage,
   ColorInput,
   Center,
+  Container,
 } from "@mantine/core";
 import { Carousel, Embla } from "@mantine/carousel";
 import { IconPlus } from "@tabler/icons";
@@ -53,7 +54,7 @@ export default function HomePage() {
               <Button
                 style={{ width: 600 }}
                 className="
-             bg-tan-200 hover:bg-orangeSoda-200  shadow-md shadow-black-900 "
+              bg-tan-200 hover:bg-orangeSoda-200  shadow-md shadow-black-900 "
               >
                 New Entry
               </Button>
@@ -69,6 +70,7 @@ export default function HomePage() {
             height={200}
             getEmblaApi={setEmbla}
             initialSlide={1}
+            mb={60}
           >
             <Carousel.Slide className="bg-white">Enteries</Carousel.Slide>
             <Carousel.Slide className="bg-white">Moods</Carousel.Slide>
@@ -86,6 +88,7 @@ export default function HomePage() {
             mx="auto"
           />
         </Stack>
+
         <AppFooter />
       </AppContainer>
     </div>

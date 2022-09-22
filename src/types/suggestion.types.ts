@@ -5,6 +5,7 @@ export type Suggestion = {
   LastUpdate: string;
   HealthfinderUrl: string;
   Categories: string;
+  AccessibleVersion: string;
 };
 
 export type SuggestionResults = {
