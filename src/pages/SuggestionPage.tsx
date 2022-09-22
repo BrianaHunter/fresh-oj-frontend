@@ -3,6 +3,8 @@ import { fetchSuggestion } from "../services/suggestion.service";
 import { Suggestion, SuggestionResults } from "../types/suggestion.types";
 import { Card, Image, Text, Badge, Button, Group, Grid } from "@mantine/core";
 import AppContainer from "../components/AppContainer";
+import AppFooter from "../components/AppFooter";
+// import fontFamily from "../resources/iCielGotham-Medium.ttf";
 
 export default function SuggestionPage() {
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
@@ -76,6 +78,7 @@ export default function SuggestionPage() {
         </div>
       </div>
       {/* </div> */}
+      <AppFooter />
     </AppContainer>
   );
 }

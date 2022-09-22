@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import EntryPage from "./pages/EntryPage";
 import SuggestionPage from "./pages/SuggestionPage";
+import ProfilePage from "./pages/ProfilePage";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/entry" element={<EntryPage />} />
         <Route path="/suggestion" element={<SuggestionPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>
   );

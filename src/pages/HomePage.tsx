@@ -20,7 +20,7 @@ import { IconPlus } from "@tabler/icons";
 import { useCallback, useEffect, useState } from "react";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
-import BackGroundImage from "../images/background-image-w-text.jpg";
+import BackGroundImage from "../resources/background-image-w-text.jpg";
 import AppFooter from "../components/AppFooter";
 import { Link } from "react-router-dom";
 

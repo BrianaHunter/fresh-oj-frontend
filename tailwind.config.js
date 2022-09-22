@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["iCielGotham-Medium"],
+      },
       colors: {
         tan: {
           100: "#d2c3af",

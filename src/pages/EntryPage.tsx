@@ -12,6 +12,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
+import AppFooter from "../components/AppFooter";
 
 const initialValue = "<p></p>";
 
@@ -29,7 +30,7 @@ export default function EntryPage() {
     <AppContainer>
       <AppHeader />
 
-      <Container>
+      <Container mb={100}>
         <Center>
           <Title mt={100} color="white" order={1}>
             What's on your mind?
@@ -80,6 +81,7 @@ export default function EntryPage() {
           </Button>
         </Link>
       </Container>
+      <AppFooter />
     </AppContainer>
   );
 }
