@@ -54,7 +54,7 @@ export default function HomePage() {
               <Button
                 style={{ width: 600 }}
                 className="
-              bg-tan-200 hover:bg-orangeSoda-200  shadow-md shadow-black-900 "
+              hover:bg-tan-200 bg-orangeSoda-200  shadow-md shadow-black-900 "
               >
                 New Entry
               </Button>
