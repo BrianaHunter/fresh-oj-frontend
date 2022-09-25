@@ -25,8 +25,6 @@ export default function EntryPage(entry: Entry) {
   const [mood, setMood] = useState("");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
-
   const {
     handleSubmit,
     reset,
@@ -36,20 +34,17 @@ export default function EntryPage(entry: Entry) {
   const addEntryMutation = useMutation(addEntry, {
     onMutate: () => {},
     onSuccess: () => {
-      queryClient.invalidateQueries(["entries", entry?._id]);
+      // queryClient.invalidateQueries(["entries", entry?._id]);
     },
     onError: (error: AxiosError) => {
       setError("Something went wrong...");
     },
   });
+
   const onSubmit = async (entryData: Partial<Entry>) => {
-    await addEntryMutation.mutateAsync({ content: entry?._id, ...entryData });
+    await addEntryMutation.mutateAsync({ userId: entry?._id, ...entryData });
   };
-  // const handleSubmit = async () => {
-  //   const entry = await addEntry(data);
-  //   console.log({ content, mood });
-  //   navigate("/suggestions");
-  // };
+
   return (
     <AppContainer>
       <AppHeader />
@@ -61,50 +56,52 @@ export default function EntryPage(entry: Entry) {
           </Title>
         </Center>
 
-        <Paper className="mt-5 p-3 px-7">
-          <Radio.Group
-            name="mood"
-            label="How do you feel?"
-            spacing="xl"
-            onChange={setMood}
-            withAsterisk
-          >
-            <div className="flex justify-between w-full">
-              <Radio value="Overjoyed" label="Overjoyed" />
-              <Radio value="Happy" label="Happy" />
-              <Radio value="Okay" label="Okay" />
-              <Radio value="Sad" label="Sad" />
-              <Radio value="Mad" label="Mad" />
-              <Radio value="Anxious" label="Anxious" />
-            </div>
-          </Radio.Group>
-        </Paper>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Paper className="mt-5 p-3 px-7">
+            <Radio.Group
+              name="mood"
+              label="How do you feel?"
+              spacing="xl"
+              onChange={setMood}
+              withAsterisk
+            >
+              <div className="flex justify-between w-full">
+                <Radio value="Overjoyed" label="Overjoyed" />
+                <Radio value="Happy" label="Happy" />
+                <Radio value="Okay" label="Okay" />
+                <Radio value="Sad" label="Sad" />
+                <Radio value="Mad" label="Mad" />
+                <Radio value="Anxious" label="Anxious" />
+              </div>
+            </Radio.Group>
+          </Paper>
 
-        <RichTextEditor
-          classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
-          //   mt={40}
-          value={content}
-          controls={[
-            ["bold", "italic", "underline", "link", "image"],
-            ["unorderedList", "h1", "h2", "h3"],
-            ["sup", "sub"],
-            ["alignLeft", "alignCenter", "alignRight"],
-          ]}
-          onChange={setContent}
-        />
-        <Link to="/suggestion">
-          <Button
-            className=""
-            mt="md"
-            variant="default"
-            size="sm"
-            // onClick={handleSubmit}
-            onClick={handleSubmit(onSubmit)}
-            loading={isSubmitting}
-          >
-            Submit
-          </Button>
-        </Link>
+          <RichTextEditor
+            classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
+            //   mt={40}
+            value={content}
+            controls={[
+              ["bold", "italic", "underline", "link", "image"],
+              ["unorderedList", "h1", "h2", "h3"],
+              ["sup", "sub"],
+              ["alignLeft", "alignCenter", "alignRight"],
+            ]}
+            onChange={setContent}
+          />
+          <Link to="/suggestion">
+            <Button
+              mt="md"
+              variant="default"
+              size="sm"
+              // onClick={handleSubmit}
+              type="submit"
+              // onClick={handleSubmit(onSubmit)}
+              loading={isSubmitting}
+            >
+              Submit
+            </Button>
+          </Link>
+        </form>
       </Container>
       <AppFooter />
     </AppContainer>
