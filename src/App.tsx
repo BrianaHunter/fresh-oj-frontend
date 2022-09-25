@@ -23,20 +23,8 @@ export default function App() {
         {/* <Route path="/:profileUsername" element={<ProfileViewPage />} /> */}
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/entry"
-          element={
-            <EntryPage
-              _id={""}
-              userId={""}
-              content={""}
-              mood={""}
-              createdAt={""}
-              updatedAt={""}
-            />
-          }
-        />
-        <Route path="/suggestion" element={<SuggestionPage />} />
+        <Route path="/entry" element={<EntryPage />} />
+        <Route path="/suggestions" element={<SuggestionPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>

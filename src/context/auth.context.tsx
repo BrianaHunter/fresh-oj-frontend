@@ -10,8 +10,6 @@ export const AuthContext = createContext<AuthContextModel>({
   setUser: () => {},
 });
 
-//----//
-
 interface Props {
   children: React.ReactNode;
 }
