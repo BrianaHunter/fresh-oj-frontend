@@ -1,22 +1,18 @@
 import { Carousel, Embla } from "@mantine/carousel";
 import { Button, Container, Progress, Title } from "@mantine/core";
-import React, { useState } from "react";
-import AppContainer from "../components/AppContainer";
+import { useState } from "react";
 import AppFooter from "../components/AppFooter";
-import AppHeader from "../components/AppHeader";
-import ProfilePageImage from "../resources/ProfilePageImage.jpg";
 import { DatePicker } from "@mantine/dates";
 import MoodDonut from "../components/MoodDonut";
+import AppContainer from "../components/AppContainer";
+import ProfilePageImage from "../resources/ProfilePageImage.jpg";
+import AppHeader from "../components/AppHeader";
 
 export default function ProfilePage() {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [embla, setEmbla] = useState<Embla | null>(null);
-
   // const userName = ()
   return (
     <div>
-      <AppContainer>
-        <AppHeader />
+      <AppContainer header={<AppHeader />}>
         <div className="p-0 mt-10">
           <img className="w-full h-full  p-0 m-0" src={ProfilePageImage} />
         </div>
