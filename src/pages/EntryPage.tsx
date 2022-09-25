@@ -13,19 +13,43 @@ import { Link, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
+import { addEntry } from "../services/entry.service";
+import { Entry } from "../types/entry.types";
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { queryClient } from "../libs/react-query";
+import { AxiosError } from "axios";
 
-const initialValue = "<p></p>";
-
-export default function EntryPage() {
-  const [value, onChange] = useState(initialValue);
+export default function EntryPage(entry: Entry) {
+  const [content, setContent] = useState("");
+  const [mood, setMood] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    // const user = await loginWithGoogle();
-    // console.log(user);
-    // navigate("/");
+  const {
+    handleSubmit,
+    reset,
+    formState: { isSubmitting, errors },
+  } = useForm<Entry>();
+
+  const addEntryMutation = useMutation(addEntry, {
+    onMutate: () => {},
+    onSuccess: () => {
+      queryClient.invalidateQueries(["entries", entry?._id]);
+    },
+    onError: (error: AxiosError) => {
+      setError("Something went wrong...");
+    },
+  });
+  const onSubmit = async (entryData: Partial<Entry>) => {
+    await addEntryMutation.mutateAsync({ content: entry?._id, ...entryData });
   };
+  // const handleSubmit = async () => {
+  //   const entry = await addEntry(data);
+  //   console.log({ content, mood });
+  //   navigate("/suggestions");
+  // };
   return (
     <AppContainer>
       <AppHeader />
@@ -41,9 +65,8 @@ export default function EntryPage() {
           <Radio.Group
             name="mood"
             label="How do you feel?"
-            // description="This is anonymous"
             spacing="xl"
-            // offset="md"
+            onChange={setMood}
             withAsterisk
           >
             <div className="flex justify-between w-full">
@@ -60,14 +83,14 @@ export default function EntryPage() {
         <RichTextEditor
           classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
           //   mt={40}
-          value={value}
+          value={content}
           controls={[
             ["bold", "italic", "underline", "link", "image"],
             ["unorderedList", "h1", "h2", "h3"],
             ["sup", "sub"],
             ["alignLeft", "alignCenter", "alignRight"],
           ]}
-          onChange={onChange}
+          onChange={setContent}
         />
         <Link to="/suggestion">
           <Button
@@ -75,7 +98,9 @@ export default function EntryPage() {
             mt="md"
             variant="default"
             size="sm"
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
+            onClick={handleSubmit(onSubmit)}
+            loading={isSubmitting}
           >
             Submit
           </Button>
