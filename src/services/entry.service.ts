@@ -1,5 +1,5 @@
-import { expressAPI } from "../libs/axios";
-import { Entry } from "../types/entry.types";
+import { axios, expressAPI } from "../libs/axios";
+import { Entry, EntryResults } from "../types/entry.types";
 
 export async function getEntries(userId: string) {
   const response = await expressAPI.get<Entry[]>("/entries", {
@@ -27,3 +27,11 @@ export async function addEntry(data: Partial<Entry>) {
 export async function deleteEntry(id: string) {
   return await expressAPI.delete<Entry>(`/entries/${id}`);
 }
+
+// export function fetchEntries() {
+//   return axios
+//     .get<EntryResults>(expressAPI.get<Entry[]>)
+//     .then((response) => response);
+// }
+
+// Was trying to set up the fetch function to fetch the entries from the backend

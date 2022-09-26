@@ -6,3 +6,7 @@ export interface Entry {
   createdAt: string;
   updatedAt: string;
 }
+
+export type EntryResults = {
+  Entry: Entry[];
+};
