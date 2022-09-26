@@ -39,7 +39,7 @@ export default function EntryPage() {
       mood,
       content,
     });
-    navigate("/suggestions");
+    navigate("/profile");
   };
 
   return (

@@ -26,11 +26,11 @@ import { getEntries } from "../services/entry.service";
 export default function ProfilePage() {
   const [userName, setUserName] = useState();
   const { user } = useContext(AuthContext);
-  // const entries = useQuery(["entries"], fetchEntries);
   const entries = useQuery(
-    ["/entries"],
+    ["entries", user?._id],
     async () => await getEntries(user?._id as string)
   );
+  // const entries = useQuery(["entries"], fetchEntries);
 
   useEffect(() => {}, []);
   //Started setting up useEffect here
@@ -55,13 +55,46 @@ export default function ProfilePage() {
             <h1>Past Entries</h1>
             <div>
               <Grid>
-                {/* {entries.map((entry) => {
+                {entries?.data?.map((entry) => (
                   <Grid.Col md={4} lg={4} sm={6}>
-                    
-                  </Grid.Col>
-                })} */}
+                    <Card
+                      shadow="sm"
+                      p="lg"
+                      radius="md"
+                      withBorder
+                      style={{
+                        height: "100%",
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Card.Section component="a"></Card.Section>
 
-                {/* My thought was that we could render the entries on cards similar to how we rendered the suggestions... I started working on it, but it isn't working yet */}
+                      <Group position="apart" mt="md" mb="xs">
+                        <Title order={5} weight={600}>
+                          {entry.mood}
+                        </Title>
+                      </Group>
+
+                      <Title order={5} size="sm" color="dimmed">
+                        {entry.content}
+                      </Title>
+
+                      <Button
+                        variant="light"
+                        color="blue"
+                        fullWidth
+                        mt="md"
+                        radius="md"
+                        component="a"
+                      >
+                        Learn More
+                      </Button>
+                    </Card>
+                  </Grid.Col>
+                ))}
               </Grid>
             </div>
           </Container>
