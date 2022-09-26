@@ -8,7 +8,7 @@ import {
   Card,
   Group,
 } from "@mantine/core";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
 import { DatePicker } from "@mantine/dates";
 import MoodDonut from "../components/MoodDonut";
@@ -18,14 +18,16 @@ import AppHeader from "../components/AppHeader";
 import { useQuery } from "@tanstack/react-query";
 // import { fetchEntries} from "../services/entry.service";
 import { Entry } from "../types/entry.types";
+import { Profile } from "../types/profile.types";
+import { AuthContext } from "../context/auth.context";
+import { fetchEntries } from "../services/entry.service";
 
 export default function ProfilePage() {
-  const [userName, setUserName] = useState("");
-  // const entries = useQuery(["entries"], fetchEntries);
+  const [userName, setUserName] = useState();
+  const { user } = useContext(AuthContext);
+  const entries = useQuery(["entries"], fetchEntries);
 
-  useEffect(() => {
-    // data fetching here
-  }, []);
+  useEffect(() => {}, []);
   //Started setting up useEffect here
 
   return (
@@ -36,7 +38,7 @@ export default function ProfilePage() {
         </div>
         <Container mb={200}>
           <Title className="poppin-font text-white text-5xl">
-            Hi Again, {userName}
+            Hi Again, {user?.displayName}
           </Title>
           <DatePicker
             className="poppin-font"
@@ -48,8 +50,10 @@ export default function ProfilePage() {
             <h1>Past Entries</h1>
             <div>
               <Grid>
-                {/* {entries?.data?.map((entries: Entry[]) => {
-                  <Grid.Col md={4} lg={4} sm={6}></Grid.Col>;
+                {/* {allEntries.map((entry) => {
+                  <Grid.Col md={4} lg={4} sm={6}>
+                    
+                  </Grid.Col>
                 })} */}
 
                 {/* My thought was that we could render the entries on cards similar to how we rendered the suggestions... I started working on it, but it isn't working yet */}
