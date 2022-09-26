@@ -20,12 +20,17 @@ import { useQuery } from "@tanstack/react-query";
 import { Entry } from "../types/entry.types";
 import { Profile } from "../types/profile.types";
 import { AuthContext } from "../context/auth.context";
-import { fetchEntries } from "../services/entry.service";
+import { getEntries } from "../services/entry.service";
+// import { fetchEntries } from "../services/entry.service";
 
 export default function ProfilePage() {
   const [userName, setUserName] = useState();
   const { user } = useContext(AuthContext);
-  const entries = useQuery(["entries"], fetchEntries);
+  // const entries = useQuery(["entries"], fetchEntries);
+  const entries = useQuery(
+    ["/entries"],
+    async () => await getEntries(user?._id as string)
+  );
 
   useEffect(() => {}, []);
   //Started setting up useEffect here
@@ -50,7 +55,7 @@ export default function ProfilePage() {
             <h1>Past Entries</h1>
             <div>
               <Grid>
-                {/* {allEntries.map((entry) => {
+                {/* {entries.map((entry) => {
                   <Grid.Col md={4} lg={4} sm={6}>
                     
                   </Grid.Col>

@@ -7,6 +7,7 @@ export async function getEntries(userId: string) {
   });
   return response.data;
 }
+
 export async function getEntry(id: string) {
   const response = await expressAPI.get<Entry>(`/entries/${id}`);
   return response.data;
@@ -28,8 +29,8 @@ export async function deleteEntry(id: string) {
   return await expressAPI.delete<Entry>(`/entries/${id}`);
 }
 
-export function fetchEntries() {
-  return axios.get<Entry[]>("/entries").then((response) => response.data);
-}
+// export function fetchEntries() {
+//   return axios.get<EntryResults>("/entries").then((response) => response.data);
+// }
 
 // Was trying to set up the fetch function to fetch the entries from the backend
