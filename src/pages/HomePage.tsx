@@ -24,16 +24,25 @@ import AppHeader from "../components/AppHeader";
 import BackGroundImage from "../resources/background-image-w-text.jpg";
 import AppFooter from "../components/AppFooter";
 import { Link } from "react-router-dom";
+import { Entry } from "../types/entry.types";
+import EntryPage from "./EntryPage";
 
 export default function HomePage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [embla, setEmbla] = useState<Embla | null>(null);
+  const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
+  const [randomArticle, setRandomArticle] = useState<Entry[]>([]);
 
   const handleScroll = useCallback(() => {
     if (!embla) return;
     const progress = Math.max(0, Math.min(1, embla.scrollProgress()));
     setScrollProgress(progress * 100);
   }, [embla, setScrollProgress]);
+
+  function randomArticles(randomArticle: Entry[]) {
+    const article =
+      randomArticle[Math.floor(Math.random() * randomArticle.length)];
+  }
 
   useEffect(() => {
     if (embla) {
@@ -72,9 +81,15 @@ export default function HomePage() {
             initialSlide={1}
             mb={60}
           >
-            <Carousel.Slide className="bg-white">Enteries</Carousel.Slide>
-            <Carousel.Slide className="bg-white">Moods</Carousel.Slide>
+            <Carousel.Slide className="bg-white">
+              Entries
+              {selectedEntry.createdAt}
+            </Carousel.Slide>
+            <Carousel.Slide className="bg-white">
+              Moods{selectedEntry.mood}
+            </Carousel.Slide>
             <Carousel.Slide className="bg-white">Frequent</Carousel.Slide>
+            {/* Tried to get a random article to show up here... Didn't have any luck yet */}
             {/* ...other slides */}
           </Carousel>
           <Progress
