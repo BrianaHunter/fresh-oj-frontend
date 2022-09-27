@@ -73,14 +73,14 @@ export default function EntryPage() {
             </div>
           </Radio.Group>
         </Paper>
-        <TextInput
-          placeholder="Title your entry!"
-          label="Title"
-          withAsterisk
-          className=" pt-5"
-          // onChange={setTitle}
-        />
-
+        <div>
+          <input
+            placeholder="Title your entry!"
+            type="Title"
+            className=" pt-5"
+            onChange={setTitle}
+          ></input>
+        </div>
         <RichTextEditor
           classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
           //   mt={40}

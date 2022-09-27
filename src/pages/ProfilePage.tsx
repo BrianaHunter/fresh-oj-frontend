@@ -11,7 +11,11 @@ import {
 } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
-import { DatePicker } from "@mantine/dates";
+import {
+  DatePicker,
+  DateRangePicker,
+  DateRangePickerValue,
+} from "@mantine/dates";
 import MoodDonut from "../components/MoodDonut";
 import AppContainer from "../components/AppContainer";
 import ProfilePageImage from "../resources/ProfilePageImage.jpg";
@@ -31,6 +35,10 @@ export default function ProfilePage() {
   const [showEntry, setShowEntry] = useState(false);
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
+  const [value, setValue] = useState<DateRangePickerValue>([
+    new Date(2022, 9, 1),
+    new Date(2022, 9, 30),
+  ]);
 
   const entries = useQuery(
     ["entries", user?._id],
@@ -56,14 +64,16 @@ export default function ProfilePage() {
           <Title className="poppin-font text-white text-5xl">
             Hi Again, {user?.displayName}
           </Title>
-          <DatePicker
+          <DateRangePicker
             className="poppin-font"
             placeholder="Pick date"
             label="Event date"
-            withAsterisk
+            value={value}
+            onChange={setValue}
+            // withAsterisk
           />
           <Container mb={100}>
-            <h1>Past Entries</h1>
+            <h1 className="poppin-font text-white">Past Entries</h1>
             <div>
               <Grid>
                 {entries?.data?.map((entry) => (
