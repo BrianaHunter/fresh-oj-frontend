@@ -7,6 +7,7 @@ import {
   Grid,
   Card,
   Group,
+  Modal,
 } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
@@ -21,11 +22,15 @@ import { Entry } from "../types/entry.types";
 import { Profile } from "../types/profile.types";
 import { AuthContext } from "../context/auth.context";
 import { getEntries } from "../services/entry.service";
+
 // import { fetchEntries } from "../services/entry.service";
 
 export default function ProfilePage() {
   const [userName, setUserName] = useState();
   const { user } = useContext(AuthContext);
+  const [showEntry, setShowEntry] = useState(false);
+  const [closeEntry, setCloseEntry] = useState(true);
+  const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
 
   const entries = useQuery(
     ["entries", user?._id],
@@ -35,6 +40,11 @@ export default function ProfilePage() {
 
   useEffect(() => {}, []);
   //Started setting up useEffect here
+
+  function showEntryDetails(entry: Entry) {
+    setSelectedEntry(entry);
+    setShowEntry(true);
+  }
 
   return (
     <div>
@@ -78,6 +88,16 @@ export default function ProfilePage() {
                           {entry.title}
                         </Title>
                       </Group>
+                      <Modal
+                        onClose={() => setShowEntry(false)}
+                        title={entry.title}
+                        overflow="inside"
+                        opened={showEntry}
+                        closeOnClickOutside={closeEntry}
+                        className="bg-tan-100"
+                      >
+                        {entry.content}
+                      </Modal>
 
                       <Button
                         variant="light"
@@ -86,6 +106,7 @@ export default function ProfilePage() {
                         mt="md"
                         radius="md"
                         component="a"
+                        onClick={() => showEntryDetails(entry)}
                       >
                         Read Entry
                       </Button>

@@ -39,8 +39,8 @@ export default function EntryPage() {
     await addEntryMutation.mutateAsync({
       userId: user?._id,
       mood,
-      content,
       title,
+      content,
     });
     navigate("/profile");
   };
