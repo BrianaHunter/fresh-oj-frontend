@@ -26,6 +26,7 @@ import { getEntries } from "../services/entry.service";
 export default function ProfilePage() {
   const [userName, setUserName] = useState();
   const { user } = useContext(AuthContext);
+
   const entries = useQuery(
     ["entries", user?._id],
     async () => await getEntries(user?._id as string)
@@ -74,13 +75,9 @@ export default function ProfilePage() {
 
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
-                          {entry.mood}
+                          {entry.title}
                         </Title>
                       </Group>
-
-                      <Title order={5} size="sm" color="dimmed">
-                        {entry.content}
-                      </Title>
 
                       <Button
                         variant="light"
@@ -90,7 +87,7 @@ export default function ProfilePage() {
                         radius="md"
                         component="a"
                       >
-                        Learn More
+                        Read Entry
                       </Button>
                     </Card>
                   </Grid.Col>

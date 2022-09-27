@@ -23,9 +23,30 @@ export default function App() {
         {/* <Route path="/:profileUsername" element={<ProfileViewPage />} /> */}
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/entry" element={<EntryPage />} />
-        <Route path="/suggestions" element={<SuggestionPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route
+          path="/entry"
+          element={
+            <PrivateRoute>
+              <EntryPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/suggestions"
+          element={
+            <PrivateRoute>
+              <SuggestionPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

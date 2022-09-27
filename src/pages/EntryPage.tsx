@@ -7,6 +7,7 @@ import {
   Paper,
   Radio,
   Space,
+  TextInput,
   Title,
 } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
@@ -23,6 +24,7 @@ import { AuthContext } from "../context/auth.context";
 export default function EntryPage() {
   const [content, setContent] = useState("");
   const [mood, setMood] = useState("");
+  const [title, setTitle] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ export default function EntryPage() {
       userId: user?._id,
       mood,
       content,
+      title,
     });
     navigate("/profile");
   };
@@ -70,6 +73,13 @@ export default function EntryPage() {
             </div>
           </Radio.Group>
         </Paper>
+        <TextInput
+          placeholder="Title your entry!"
+          label="Title"
+          withAsterisk
+          className=" pt-5"
+          // onChange={setTitle}
+        />
 
         <RichTextEditor
           classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
