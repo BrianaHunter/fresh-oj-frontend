@@ -78,7 +78,7 @@ export default function EntryPage() {
             placeholder="Title your entry!"
             type="Title"
             className=" pt-5"
-            onChange={setTitle}
+            // onChange={setTitle}
           ></input>
         </div>
         <RichTextEditor
