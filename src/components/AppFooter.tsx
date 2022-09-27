@@ -8,7 +8,7 @@ export default function AppFooter() {
     <div>
       <Footer height={50} p="md">
         <div className="flex justify-between px-10">
-          <Link to="/suggestion">
+          <Link to="/suggestions">
             <ActionIcon>
               <IconDots
                 // style={{ width: "48px", height: "48px" }}

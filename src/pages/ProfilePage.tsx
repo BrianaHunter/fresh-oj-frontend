@@ -95,12 +95,13 @@ export default function ProfilePage() {
 
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
-                          {entry.title}
+                          {/* {entry.title} */}
+                          You were {entry.mood}
                         </Title>
                       </Group>
                       <Modal
                         onClose={() => setShowEntry(false)}
-                        title={entry.title}
+                        // title={entry.title}
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}

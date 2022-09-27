@@ -24,7 +24,7 @@ import { AuthContext } from "../context/auth.context";
 export default function EntryPage() {
   const [content, setContent] = useState("");
   const [mood, setMood] = useState("");
-  const [title, setTitle] = useState("");
+  // const [title, setTitle] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ export default function EntryPage() {
     await addEntryMutation.mutateAsync({
       userId: user?._id,
       mood,
-      title,
+      // title,
       content,
     });
     navigate("/profile");
@@ -73,14 +73,14 @@ export default function EntryPage() {
             </div>
           </Radio.Group>
         </Paper>
-        <div>
+        {/* <div>
           <input
             placeholder="Title your entry!"
             type="Title"
             className=" pt-5"
             // onChange={setTitle}
           ></input>
-        </div>
+        </div> */}
         <RichTextEditor
           classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
           //   mt={40}
