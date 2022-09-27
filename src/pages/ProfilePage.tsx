@@ -26,6 +26,7 @@ import { Entry } from "../types/entry.types";
 import { Profile } from "../types/profile.types";
 import { AuthContext } from "../context/auth.context";
 import { getEntries } from "../services/entry.service";
+import { profile } from "console";
 
 // import { fetchEntries } from "../services/entry.service";
 
@@ -57,8 +58,15 @@ export default function ProfilePage() {
   return (
     <div>
       <AppContainer header={<AppHeader />}>
-        <div className="p-0 mt-10">
-          <img className="w-full h-full  p-0 m-0" src={ProfilePageImage} />
+        <div className="flex p-0 mt-10">
+          <img
+            className="align-center w-full h-full p-0 m-0"
+            src={ProfilePageImage}
+          />
+          <img
+            className="justify-self-center w-auto h-32 rounded-full"
+            src={user?.photoURL}
+          />
         </div>
         <Container mb={200}>
           <Title className="poppin-font text-white text-5xl">
