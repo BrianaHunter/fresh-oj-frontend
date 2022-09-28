@@ -87,6 +87,7 @@ export default function ProfilePage() {
                 {entries?.data?.map((entry) => (
                   <Grid.Col md={4} lg={4} sm={6}>
                     <Card
+                      key={entry._id}
                       shadow="sm"
                       p="lg"
                       radius="md"
@@ -115,7 +116,8 @@ export default function ProfilePage() {
                         closeOnClickOutside={closeEntry}
                         className="bg-tan-100"
                       >
-                        {entry.content}
+                        {selectedEntry.content}
+                        {/* selected entry gives us the entry for the given mood it matches */}
                       </Modal>
 
                       <Button

@@ -4,4 +4,6 @@ export interface Mood {
   mood: string;
   createdAt: string;
   updatedAt: string;
+  value?: number;
+  color?: string;
 }
