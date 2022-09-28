@@ -126,7 +126,7 @@ export default function ProfilePage() {
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
-                        className="bg-tan-100 "
+                        className="bg-tan-100"
                       >
                         {selectedEntry.content}
                         {/* selected entry gives us the entry for the given mood it matches */}
