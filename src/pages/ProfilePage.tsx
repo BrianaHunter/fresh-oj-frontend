@@ -117,7 +117,7 @@ export default function ProfilePage() {
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
                           {/* {entry.title} */}
-                          You were {entry.mood}
+                          Mood: {entry.mood}
                         </Title>
                       </Group>
                       <Modal
