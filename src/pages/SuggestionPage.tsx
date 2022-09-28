@@ -23,7 +23,9 @@ export default function SuggestionPage() {
   return (
     <AppContainer>
       <Container mb={100}>
-        <h1>Helpful Tips and Suggestions</h1>
+        <h1 className="poppin-font text-white text-5xl">
+          Helpful Tips and Suggestions
+        </h1>
         <div>
           <Grid>
             {suggestions?.data?.map((suggestion) => (

@@ -8,6 +8,7 @@ import {
   Card,
   Group,
   Modal,
+  Center,
 } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
@@ -22,10 +23,10 @@ import ProfilePageImage from "../resources/ProfilePageImage.jpg";
 import AppHeader from "../components/AppHeader";
 import { useQuery } from "@tanstack/react-query";
 // import { fetchEntries} from "../services/entry.service";
-import { Entry } from "../types/entry.types";
+import { Entry, EntryResults } from "../types/entry.types";
 import { Profile } from "../types/profile.types";
 import { AuthContext } from "../context/auth.context";
-import { getEntries } from "../services/entry.service";
+import { getEntries, getEntry } from "../services/entry.service";
 import { profile } from "console";
 
 // import { fetchEntries } from "../services/entry.service";
@@ -72,14 +73,25 @@ export default function ProfilePage() {
           <Title className="poppin-font text-white text-5xl">
             Hi Again, {user?.displayName}
           </Title>
-          <DateRangePicker
-            className="poppin-font"
-            placeholder="Pick date"
-            label="Event date"
-            value={value}
-            onChange={setValue}
-            // withAsterisk
-          />
+          <div className="">
+            <DateRangePicker
+              className="poppin-font"
+              placeholder="Pick date"
+              label="Event date"
+              value={value}
+              onChange={setValue}
+              // withAsterisk
+            />
+            <Center className=" pt-4">
+              <Button
+                style={{ width: 600 }}
+                className=" hover:bg-tan-200 bg-orangeSoda-200  shadow-md shadow-black-900 "
+                onClick={() => showEntryDetails}
+              >
+                Filter
+              </Button>
+            </Center>
+          </div>
           <Container mb={100}>
             <h1 className="poppin-font text-white">Past Entries</h1>
             <div>
@@ -114,7 +126,7 @@ export default function ProfilePage() {
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
-                        className="bg-tan-100"
+                        className="bg-tan-100 "
                       >
                         {selectedEntry.content}
                         {/* selected entry gives us the entry for the given mood it matches */}
