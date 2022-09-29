@@ -12,22 +12,17 @@ import {
 } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
-import {
-  DatePicker,
-  DateRangePicker,
-  DateRangePickerValue,
-} from "@mantine/dates";
+import { DatePicker } from "@mantine/dates";
 import MoodDonut from "../components/MoodDonut";
 import AppContainer from "../components/AppContainer";
 import ProfilePageImage from "../resources/ProfilePageImage.jpg";
 import AppHeader from "../components/AppHeader";
 import { useQuery } from "@tanstack/react-query";
-// import { fetchEntries} from "../services/entry.service";
 import { Entry, EntryResults } from "../types/entry.types";
 import { Profile } from "../types/profile.types";
 import { AuthContext } from "../context/auth.context";
 import { getEntries, getEntry } from "../services/entry.service";
-import { profile } from "console";
+
 import dayjs from "dayjs";
 
 // import { fetchEntries } from "../services/entry.service";
@@ -38,13 +33,7 @@ export default function ProfilePage() {
   const [showEntry, setShowEntry] = useState(false);
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
-  // const [value, onChange] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  // const [value, setValue] = useState<DateRangePickerValue>([
-  //   new Date(2022, 9, 1),
-  //   new Date(2022, 9, 30),
-  // ]);
-  // console.log(value[0]?.toISOString());
 
   const entries = useQuery(
     ["entries", user?._id, dayjs(selectedDate).format("MM/DD/YYYY")],
@@ -115,14 +104,14 @@ export default function ProfilePage() {
 
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
-                          {entry.title}
+                          {/* {entry.title} */}
                           Mood: {entry.mood}
                         </Title>
                       </Group>
                       <Modal
                         className="bg-tan-100"
                         onClose={() => setShowEntry(false)}
-                        title={entry.title}
+                        // title={entry.title}
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
