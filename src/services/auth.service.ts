@@ -1,5 +1,9 @@
 import { expressAPI } from "../libs/axios";
-import { signInWithPopup } from "firebase/auth";
+import {
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { firebaseAuth, googleAuthProvider } from "../libs/firebase";
 import { queryClient } from "../libs/react-query";
 import { User } from "../types/user.types";
@@ -40,3 +44,29 @@ export async function getLoginUser(uid: string) {
   });
   return user;
 }
+
+export async function signUp(email: string, password: string) {
+  // created the firebaseUser with firebaseAuth
+  const firebaseUser = await createUserWithEmailAndPassword(
+    firebaseAuth,
+    email,
+    password
+  );
+  // make a request to the auth/signup route and create a new mongo user
+
+  // return the user from the auth/signup api request
+}
+
+export async function logIn(email: string, password: string) {
+  // login the firebaseUser with firebaseAuth
+  const firebaseUser = await signInWithEmailAndPassword(
+    firebaseAuth,
+    email,
+    password
+  );
+  // use the getLoginUser function to get the logged in mongodb user
+
+  // return the user from the getLoginUser function
+}
+
+// FORM CALLS FOR FUNCTIONS on Signup and Login PAGE
