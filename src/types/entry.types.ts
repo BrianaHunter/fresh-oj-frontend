@@ -2,7 +2,7 @@ export interface Entry {
   _id: string;
   userId: string;
   dateAdded: string;
-  // title: string;
+  // titleEntry: string;
   content: string;
   mood: string;
   createdAt: string;

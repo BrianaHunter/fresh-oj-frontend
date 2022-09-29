@@ -8,6 +8,7 @@ import {
   Paper,
   Radio,
   Space,
+  Textarea,
   TextInput,
   Title,
 } from "@mantine/core";
@@ -16,17 +17,15 @@ import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";
 import { addEntry } from "../services/entry.service";
-import { Entry } from "../types/entry.types";
 import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../libs/react-query";
-import { AxiosError } from "axios";
 import { AuthContext } from "../context/auth.context";
 import dayjs from "dayjs";
 
 export default function EntryPage() {
   const [content, setContent] = useState("");
   const [mood, setMood] = useState("");
-  // const [title, setTitle] = useState("");
+  // const [titleEntry, setTitleEntry] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -41,7 +40,7 @@ export default function EntryPage() {
     await addEntryMutation.mutateAsync({
       userId: user?._id,
       mood,
-      // title,
+      // titleEntry,
       dateAdded: dayjs(new Date()).format("MM/DD/YYYY"),
       content,
     });
@@ -77,12 +76,12 @@ export default function EntryPage() {
           </Radio.Group>
         </Paper>
 
-        {/* <Input
+        <Textarea
           placeholder="Title your entry!"
-          type="Title"
+          label="Title"
           className=" pt-5"
-          onChange={() => setTitle("")}
-        ></Input> */}
+          // onChange={setTitleEntry}
+        ></Textarea>
 
         <RichTextEditor
           classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}

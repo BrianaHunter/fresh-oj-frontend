@@ -18,14 +18,10 @@ import AppContainer from "../components/AppContainer";
 import ProfilePageImage from "../resources/ProfilePageImage.jpg";
 import AppHeader from "../components/AppHeader";
 import { useQuery } from "@tanstack/react-query";
-import { Entry, EntryResults } from "../types/entry.types";
-import { Profile } from "../types/profile.types";
+import { Entry } from "../types/entry.types";
 import { AuthContext } from "../context/auth.context";
 import { getEntries, getEntry } from "../services/entry.service";
-
 import dayjs from "dayjs";
-
-// import { fetchEntries } from "../services/entry.service";
 
 export default function ProfilePage() {
   const [userName, setUserName] = useState();
@@ -104,14 +100,13 @@ export default function ProfilePage() {
 
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
-                          {/* {entry.title} */}
+                          {/* {entry.titleEntry} */}
                           Mood: {entry.mood}
                         </Title>
                       </Group>
                       <Modal
                         className="bg-tan-100"
                         onClose={() => setShowEntry(false)}
-                        // title={entry.title}
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
