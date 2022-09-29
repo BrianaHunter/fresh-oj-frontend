@@ -129,12 +129,8 @@ export default function ProfilePage() {
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
                       >
-<<<<<<< HEAD
-                        <div>{entry.content}</div>
-=======
                         {selectedEntry.content}
                         {/* selected entry gives us the entry for the given mood it matches */}
->>>>>>> 81df0052c0884e006b31fb24f0622fde8612eb1b
                       </Modal>
 
                       <Button
