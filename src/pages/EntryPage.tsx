@@ -4,6 +4,7 @@ import {
   Button,
   Center,
   Container,
+  Input,
   Paper,
   Radio,
   Space,
@@ -25,7 +26,7 @@ import dayjs from "dayjs";
 export default function EntryPage() {
   const [content, setContent] = useState("");
   const [mood, setMood] = useState("");
-  // const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -40,8 +41,8 @@ export default function EntryPage() {
     await addEntryMutation.mutateAsync({
       userId: user?._id,
       mood,
+      title,
       dateAdded: dayjs(new Date()).format("MM/DD/YYYY"),
-      // title,
       content,
     });
     navigate("/profile");
@@ -75,14 +76,14 @@ export default function EntryPage() {
             </div>
           </Radio.Group>
         </Paper>
-        {/* <div>
-          <input
+        <div>
+          <Input
             placeholder="Title your entry!"
             type="Title"
             className=" pt-5"
-            // onChange={setTitle}
-          ></input>
-        </div> */}
+            onChange={() => setTitle("")}
+          ></Input>
+        </div>
         <RichTextEditor
           classNames={{ root: "mt-7 h-[600px] overflow-y-scroll" }}
           //   mt={40}

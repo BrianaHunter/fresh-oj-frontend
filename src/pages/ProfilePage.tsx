@@ -115,14 +115,14 @@ export default function ProfilePage() {
 
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
-                          {/* {entry.title} */}
+                          {entry.title}
                           Mood: {entry.mood}
                         </Title>
                       </Group>
                       <Modal
                         className="bg-tan-100"
                         onClose={() => setShowEntry(false)}
-                        // title={entry.title}
+                        title={entry.title}
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
