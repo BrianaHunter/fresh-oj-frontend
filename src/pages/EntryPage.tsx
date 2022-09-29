@@ -26,7 +26,7 @@ import dayjs from "dayjs";
 export default function EntryPage() {
   const [content, setContent] = useState("");
   const [mood, setMood] = useState("");
-  const [title, setTitle] = useState("");
+  // const [title, setTitle] = useState("");
   const { user } = useContext(AuthContext);
 
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ export default function EntryPage() {
     await addEntryMutation.mutateAsync({
       userId: user?._id,
       mood,
-      title,
+      // title,
       dateAdded: dayjs(new Date()).format("MM/DD/YYYY"),
       content,
     });
