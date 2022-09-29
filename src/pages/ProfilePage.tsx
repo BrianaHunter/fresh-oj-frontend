@@ -8,6 +8,7 @@ import {
   Card,
   Group,
   Modal,
+  Center,
 } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
@@ -22,10 +23,10 @@ import ProfilePageImage from "../resources/ProfilePageImage.jpg";
 import AppHeader from "../components/AppHeader";
 import { useQuery } from "@tanstack/react-query";
 // import { fetchEntries} from "../services/entry.service";
-import { Entry } from "../types/entry.types";
+import { Entry, EntryResults } from "../types/entry.types";
 import { Profile } from "../types/profile.types";
 import { AuthContext } from "../context/auth.context";
-import { getEntries } from "../services/entry.service";
+import { getEntries, getEntry } from "../services/entry.service";
 import { profile } from "console";
 
 // import { fetchEntries } from "../services/entry.service";
@@ -36,10 +37,11 @@ export default function ProfilePage() {
   const [showEntry, setShowEntry] = useState(false);
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
-  const [value, setValue] = useState<DateRangePickerValue>([
-    new Date(2022, 9, 1),
-    new Date(2022, 9, 30),
-  ]);
+  // const [value, setValue] = useState<DateRangePickerValue>([
+  //   new Date(2022, 9, 1),
+  //   new Date(2022, 9, 30),
+  // ]);
+  // console.log(value[0]?.toISOString());
 
   const entries = useQuery(
     ["entries", user?._id],
@@ -72,14 +74,25 @@ export default function ProfilePage() {
           <Title className="poppin-font text-white text-5xl">
             Hi Again, {user?.displayName}
           </Title>
-          <DateRangePicker
-            className="poppin-font"
-            placeholder="Pick date"
-            label="Event date"
-            value={value}
-            onChange={setValue}
-            // withAsterisk
-          />
+          <div className="">
+            <DatePicker
+              className="poppin-font"
+              placeholder="Pick date"
+              label="Event date"
+              // value={value}
+              // onChange={setValue}
+              // withAsterisk
+            />
+            <Center className=" pt-4">
+              <Button
+                style={{ width: 600 }}
+                className=" hover:bg-tan-200 bg-orangeSoda-200  shadow-md shadow-black-900 "
+                // onClick={() => showEntryDetails}
+              >
+                Filter
+              </Button>
+            </Center>
+          </div>
           <Container mb={100}>
             <h1 className="poppin-font text-white">Past Entries</h1>
             <div>
@@ -87,6 +100,7 @@ export default function ProfilePage() {
                 {entries?.data?.map((entry) => (
                   <Grid.Col md={4} lg={4} sm={6}>
                     <Card
+                      key={entry._id}
                       shadow="sm"
                       p="lg"
                       radius="md"
@@ -104,7 +118,7 @@ export default function ProfilePage() {
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
                           {/* {entry.title} */}
-                          You were {entry.mood}
+                          Mood: {entry.mood}
                         </Title>
                       </Group>
                       <Modal
@@ -115,7 +129,12 @@ export default function ProfilePage() {
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
                       >
+<<<<<<< HEAD
                         <div>{entry.content}</div>
+=======
+                        {selectedEntry.content}
+                        {/* selected entry gives us the entry for the given mood it matches */}
+>>>>>>> 81df0052c0884e006b31fb24f0622fde8612eb1b
                       </Modal>
 
                       <Button
