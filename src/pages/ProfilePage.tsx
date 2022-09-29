@@ -37,10 +37,11 @@ export default function ProfilePage() {
   const [showEntry, setShowEntry] = useState(false);
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
-  const [value, setValue] = useState<DateRangePickerValue>([
-    new Date(2022, 9, 1),
-    new Date(2022, 9, 30),
-  ]);
+  // const [value, setValue] = useState<DateRangePickerValue>([
+  //   new Date(2022, 9, 1),
+  //   new Date(2022, 9, 30),
+  // ]);
+  // console.log(value[0]?.toISOString());
 
   const entries = useQuery(
     ["entries", user?._id],
@@ -74,19 +75,19 @@ export default function ProfilePage() {
             Hi Again, {user?.displayName}
           </Title>
           <div className="">
-            <DateRangePicker
+            <DatePicker
               className="poppin-font"
               placeholder="Pick date"
               label="Event date"
-              value={value}
-              onChange={setValue}
+              // value={value}
+              // onChange={setValue}
               // withAsterisk
             />
             <Center className=" pt-4">
               <Button
                 style={{ width: 600 }}
                 className=" hover:bg-tan-200 bg-orangeSoda-200  shadow-md shadow-black-900 "
-                onClick={() => showEntryDetails}
+                // onClick={() => showEntryDetails}
               >
                 Filter
               </Button>

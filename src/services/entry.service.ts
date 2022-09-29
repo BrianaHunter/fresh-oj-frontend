@@ -1,9 +1,13 @@
 import { axios, expressAPI } from "../libs/axios";
 import { Entry, EntryResults } from "../types/entry.types";
 
-export async function getEntries(userId: string) {
+export async function getEntries(
+  userId: string,
+  startDate?: string,
+  endDate?: string
+) {
   const response = await expressAPI.get<Entry[]>("/entries", {
-    params: { userId },
+    params: { userId, startDate, endDate },
   });
   return response.data;
 }
