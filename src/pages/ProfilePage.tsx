@@ -108,14 +108,14 @@ export default function ProfilePage() {
                         </Title>
                       </Group>
                       <Modal
+                        className="bg-tan-100"
                         onClose={() => setShowEntry(false)}
                         // title={entry.title}
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
-                        className="bg-tan-100"
                       >
-                        {entry.content}
+                        <div>{entry.content}</div>
                       </Modal>
 
                       <Button

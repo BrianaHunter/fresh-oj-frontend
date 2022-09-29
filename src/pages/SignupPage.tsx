@@ -15,7 +15,7 @@ export default function SignupPage() {
   return (
     <AppContainer>
       <Container size={420} my={100}>
-        <Title color="pink" align="center">
+        <Title color="tan" align="center">
           Fresh OJ
         </Title>
         <Paper withBorder shadow="sm" p={30} mt={30} radius="md">
