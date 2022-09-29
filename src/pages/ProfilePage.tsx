@@ -28,6 +28,7 @@ import { Profile } from "../types/profile.types";
 import { AuthContext } from "../context/auth.context";
 import { getEntries, getEntry } from "../services/entry.service";
 import { profile } from "console";
+import dayjs from "dayjs";
 
 // import { fetchEntries } from "../services/entry.service";
 
@@ -37,6 +38,8 @@ export default function ProfilePage() {
   const [showEntry, setShowEntry] = useState(false);
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
+  // const [value, onChange] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   // const [value, setValue] = useState<DateRangePickerValue>([
   //   new Date(2022, 9, 1),
   //   new Date(2022, 9, 30),
@@ -44,10 +47,13 @@ export default function ProfilePage() {
   // console.log(value[0]?.toISOString());
 
   const entries = useQuery(
-    ["entries", user?._id],
-    async () => await getEntries(user?._id as string)
+    ["entries", user?._id, dayjs(selectedDate).format("MM/DD/YYYY")],
+    async () =>
+      await getEntries(
+        user?._id as string,
+        dayjs(selectedDate).format("MM/DD/YYYY")
+      )
   );
-  // const entries = useQuery(["entries"], fetchEntries);
 
   useEffect(() => {}, []);
   //Started setting up useEffect here
@@ -79,19 +85,11 @@ export default function ProfilePage() {
               className="poppin-font"
               placeholder="Pick date"
               label="Event date"
-              // value={value}
-              // onChange={setValue}
+              allowFreeInput
+              value={selectedDate}
+              onChange={setSelectedDate}
               // withAsterisk
             />
-            <Center className=" pt-4">
-              <Button
-                style={{ width: 600 }}
-                className=" hover:bg-tan-200 bg-orangeSoda-200  shadow-md shadow-black-900 "
-                // onClick={() => showEntryDetails}
-              >
-                Filter
-              </Button>
-            </Center>
           </div>
           <Container mb={100}>
             <h1 className="poppin-font text-white">Past Entries</h1>

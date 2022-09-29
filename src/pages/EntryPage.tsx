@@ -20,6 +20,7 @@ import { useMutation } from "@tanstack/react-query";
 import { queryClient } from "../libs/react-query";
 import { AxiosError } from "axios";
 import { AuthContext } from "../context/auth.context";
+import dayjs from "dayjs";
 
 export default function EntryPage() {
   const [content, setContent] = useState("");
@@ -39,6 +40,7 @@ export default function EntryPage() {
     await addEntryMutation.mutateAsync({
       userId: user?._id,
       mood,
+      dateAdded: dayjs(new Date()).format("MM/DD/YYYY"),
       // title,
       content,
     });
