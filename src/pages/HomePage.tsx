@@ -2,7 +2,19 @@
 // import { IconPlus } from "@tabler/icons";
 // import { useContext } from "react";
 // import { useQuery } from "@tanstack/react-query";
-import { AppShell, Button, Progress, Stack, Center } from "@mantine/core";
+import {
+  AppShell,
+  Button,
+  Progress,
+  Stack,
+  Center,
+  Grid,
+  Card,
+  Group,
+  Badge,
+  Text,
+  Image,
+} from "@mantine/core";
 import { Carousel, Embla } from "@mantine/carousel";
 import { useCallback, useContext, useEffect, useState } from "react";
 import AppContainer from "../components/AppContainer";
@@ -69,8 +81,36 @@ export default function HomePage() {
             </Center>
           </Link>
 
-          <div className="text-center">My Stats</div>
+          <div className="text-center"></div>
 
+          <div className="flex justify-center space-around">
+            <Card shadow="sm" p="lg" radius="md" withBorder mb={80}>
+              <Card.Section>
+                <Image
+                  src={randomArticle()?.ImageUrl}
+                  height={160}
+                  alt={randomArticle()?.Title}
+                />
+              </Card.Section>
+
+              <Group position="apart" mt="md" mb="xs">
+                <Badge>{randomArticle()?.Title}</Badge>
+              </Group>
+
+              <Button
+                variant="light"
+                color="blue"
+                fullWidth
+                mt="md"
+                radius="md"
+                component="a"
+                href={randomArticle()?.AccessibleVersion}
+              >
+                Read More Here
+              </Button>
+            </Card>
+          </div>
+          {/* 
           <Carousel
             dragFree
             slideSize="30%"
@@ -92,8 +132,8 @@ export default function HomePage() {
             <Carousel.Slide className="bg-white">Frequent</Carousel.Slide>
             <Carousel.Slide className="bg-white">Frequent</Carousel.Slide>
             {/* Tried to get a random article to show up here... Didn't have any luck yet */}
-            {/* ...other slides */}
-          </Carousel>
+          {/* ...other slides */}
+          {/* </Carousel> */}
           {/* <Progress
             value={scrollProgress}
             styles={{
