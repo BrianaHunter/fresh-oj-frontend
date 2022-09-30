@@ -9,6 +9,8 @@ import {
   Group,
   Modal,
   Center,
+  TypographyStylesProvider,
+  useMantineTheme,
 } from "@mantine/core";
 import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
@@ -48,6 +50,8 @@ export default function ProfilePage() {
     setSelectedEntry(entry);
     setShowEntry(true);
   }
+
+  const theme = useMantineTheme();
 
   return (
     <div>
@@ -104,20 +108,34 @@ export default function ProfilePage() {
                       </div>
 
                       <Group position="apart" mt="md" mb="xs">
-                        <Title order={5} weight={600}>
-                          Title: {entry.titleEntry}
+                        <Title order={5} weight={600} className="poppin-font">
+                          {entry.titleEntry}
                         </Title>
                       </Group>
+
                       <Modal
-                        className="bg-tan-100"
+                        overlayColor={
+                          theme.colorScheme === "dark"
+                            ? theme.colors.gray[9]
+                            : theme.colors.orange[2]
+                        }
+                        overlayOpacity={0.6}
+                        overlayBlur={3}
+                        centered
+                        size="lg"
                         onClose={() => setShowEntry(false)}
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
                       >
-                        <p>{entry.mood}</p>
-                        {selectedEntry.content}
-                        {/* selected entry gives us the entry for the given mood it matches */}
+                        <p className="poppin-font text-2xl">{entry.mood}</p>
+                        <TypographyStylesProvider className="poppin-font text-lg">
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: selectedEntry.content,
+                            }}
+                          />
+                        </TypographyStylesProvider>
                       </Modal>
 
                       <Button
