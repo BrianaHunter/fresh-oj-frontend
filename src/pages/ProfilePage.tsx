@@ -105,8 +105,7 @@ export default function ProfilePage() {
 
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
-                          {/* Title: {entry.titleEntry} */}
-                          {entry.mood}
+                          Title: {entry.titleEntry}
                         </Title>
                       </Group>
                       <Modal
@@ -116,6 +115,7 @@ export default function ProfilePage() {
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
                       >
+                        <p>{entry.mood}</p>
                         {selectedEntry.content}
                         {/* selected entry gives us the entry for the given mood it matches */}
                       </Modal>
