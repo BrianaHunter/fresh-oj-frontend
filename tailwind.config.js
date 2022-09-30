@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["iCielGotham-Medium"],
+        sans: ["Poppins"],
       },
       colors: {
         tan: {

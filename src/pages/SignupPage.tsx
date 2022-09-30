@@ -6,17 +6,19 @@ import {
   Text,
   Title,
   TextInput,
+  Center,
 } from "@mantine/core";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
 import { signUp, signUpWithGoogle } from "../services/auth.service";
+import FreshOjLogo from "../resources/FreshOJLogo.svg";
+import orangeImage from "../resources/orangeImage.svg";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [register, setRegister] = useState(false);
 
   const navigate = useNavigate();
 
@@ -31,79 +33,86 @@ export default function SignupPage() {
     console.log(user);
     navigate("/");
   };
-
-  // const form = useForm({
-  //   initialValues: { name: "", email: "", password: "" },
-
-  //   // functions will be used to validate values at corresponding key
-  //   validate: {
-  //     name: (value) =>
-  //       value.length < 5 ? "Name must have at least 5 letters" : null,
-  //     email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-  //     password: (value) =>
-  //       value.length < 5 ? "Password must have at least 5 letters" : null,
-  //   },
-  // });
   return (
     <AppContainer>
       <Container size={420} my={100}>
-        <Title align="center" className="poppin-font text-white text-5xl">
-          Fresh OJ
-        </Title>
-        <Paper withBorder shadow="sm" p={30} mt={30} radius="md">
-          <Title align="center">Create Account</Title>
-
-          <Text color="green" size="lg" align="center" mt={5}>
-            Already have an account?{" "}
-            <Anchor
-              component={Link}
-              to="/login"
-              className="font-medium !no-underline"
-            >
-              Login
-            </Anchor>
-          </Text>
-          <Button
-            fullWidth
-            mt="xl"
-            variant="default"
-            size="lg"
-            onClick={handleSignup}
+        {/* <Center className=" w-72 h-72 opacity-100">
+          <img src={FreshOjLogo} />
+        </Center> */}
+        <div className="relative">
+          <div className="absolute right-28">
+            <img className=" h-9/12 w-9/12" src={orangeImage} />
+          </div>
+          <Title
+            align="center"
+            // className="  absolute bottom-0 left-9 poppin-font font-light text-black text-7xl"
+            className="  poppin-font font-normal text-white text-7xl mt-[-50px]"
           >
-            Sign up with Google
-          </Button>
+            FRESH OJ
+          </Title>
+          <Title
+            align="center"
+            // className=" absolute top-0 left-24  poppin-font font-normal text-black text-base mt-1"
+            className=" poppin-font font-normal text-white text-base mt-1"
+          >
+            open mind, fresh start
+          </Title>
 
-          <form>
-            <TextInput
-              label="Name"
-              placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
-            />
-            <TextInput
-              value={email}
-              type="email"
-              mt="sm"
-              label="Email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextInput
-              value={password}
-              type="password"
-              mt="sm"
-              label="Password"
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+          <Paper withBorder shadow="sm" p={30} mt={30} radius="md">
+            <Title align="center">Create Account</Title>
+
+            <Text color="black" size="lg" align="center" mt={5}>
+              Already have an account?{" "}
+              <Anchor
+                component={Link}
+                to="/login"
+                className="font-medium !no-underline text-orangeSoda-200"
+              >
+                Login
+              </Anchor>
+            </Text>
             <Button
-              onClick={() => handleGetStarted()}
-              className="
-              hover:bg-tan-200 bg-orangeSoda-200 mt-5 "
+              fullWidth
+              mt="xl"
+              variant="default"
+              size="lg"
+              onClick={handleSignup}
             >
-              Get Started
+              Sign up with Google
             </Button>
-          </form>
-        </Paper>
+
+            <form>
+              <TextInput
+                label="Name"
+                placeholder="Name"
+                onChange={(e) => setName(e.target.value)}
+              />
+              <TextInput
+                value={email}
+                type="email"
+                mt="sm"
+                label="Email"
+                placeholder="Email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <TextInput
+                value={password}
+                type="password"
+                mt="sm"
+                label="Password"
+                placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <Button
+                onClick={() => handleGetStarted()}
+                className="
+              hover:bg-tan-200 bg-orangeSoda-200 mt-5 "
+              >
+                Get Started
+              </Button>
+            </form>
+          </Paper>
+        </div>
       </Container>
     </AppContainer>
   );

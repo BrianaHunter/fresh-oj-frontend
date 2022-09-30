@@ -18,7 +18,7 @@ export default function MoodDonut() {
 
   return (
     <div>
-      <PieChart data={moods} lineWidth={35} rounded className="w-64 h-64" />
+      <PieChart data={moods} lineWidth={35} rounded className=" w-80 h-80" />
     </div>
   );
 }

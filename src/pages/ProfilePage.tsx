@@ -67,8 +67,8 @@ export default function ProfilePage() {
           />
         </div>
         <Container mb={200}>
-          <Title className="poppin-font text-white text-5xl">
-            Hi Again, {user?.displayName}
+          <Title className="poppin-font font-extralight text-white text-7xl mb-7">
+            {user?.displayName}
           </Title>
           <div className="">
             <DatePicker
@@ -82,7 +82,9 @@ export default function ProfilePage() {
             />
           </div>
           <Container mb={100}>
-            <h1 className="poppin-font text-white">Past Entries</h1>
+            <h1 className="poppin-font font-extralight text-white text-5xl mt-20 mb-10">
+              Past Entries
+            </h1>
             <div>
               <Grid>
                 {entries?.data?.map((entry) => (
@@ -104,11 +106,15 @@ export default function ProfilePage() {
                       <Card.Section component="a"></Card.Section>
 
                       <div className="">
-                        <IconTrash className="close-button absolute top-0 right-0 h-7 w-7 p-1" />
+                        <IconTrash className="close-button absolute top-0 right-0 h-7 w-7 p-1 text-orangeSoda-200" />
                       </div>
 
                       <Group position="apart" mt="md" mb="xs">
-                        <Title order={5} weight={600} className="poppin-font">
+                        <Title
+                          order={5}
+                          weight={600}
+                          className="poppin-font font-light text-2xl"
+                        >
                           {entry.titleEntry}
                         </Title>
                       </Group>
@@ -116,8 +122,8 @@ export default function ProfilePage() {
                       <Modal
                         overlayColor={
                           theme.colorScheme === "dark"
-                            ? theme.colors.gray[9]
-                            : theme.colors.orange[2]
+                            ? theme.colors.gray[3]
+                            : theme.colors.yellow[9]
                         }
                         overlayOpacity={0.6}
                         overlayBlur={3}
@@ -127,9 +133,13 @@ export default function ProfilePage() {
                         overflow="inside"
                         opened={showEntry}
                         closeOnClickOutside={closeEntry}
+                        className="mt-[-280px]"
                       >
-                        <p className="poppin-font text-2xl">{entry.mood}</p>
-                        <TypographyStylesProvider className="poppin-font text-lg">
+                        <p className="poppin-font text-5xl px-5">
+                          {entry.mood}
+                        </p>
+                        <p className="border-solid border-b-0 border-orangeSoda-200 mt-[-10px] mb-10 px-5"></p>
+                        <TypographyStylesProvider className="poppin-font text-lg px-5">
                           <div
                             dangerouslySetInnerHTML={{
                               __html: selectedEntry.content,
@@ -139,8 +149,8 @@ export default function ProfilePage() {
                       </Modal>
 
                       <Button
+                        className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
                         variant="light"
-                        color="blue"
                         fullWidth
                         mt="md"
                         radius="md"
@@ -155,7 +165,9 @@ export default function ProfilePage() {
               </Grid>
             </div>
           </Container>
-          <Title className="poppin-font text-white">Recent Moods</Title>
+          <Title className="poppin-font font-extralight text-5xl text-white mb-10">
+            Recent Moods
+          </Title>
           <MoodDonut />
         </Container>
 

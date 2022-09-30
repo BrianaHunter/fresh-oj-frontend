@@ -36,25 +36,21 @@ export default function LoginPage() {
 
   return (
     <AppContainer>
-      <Container size={420} my={100}>
-        <div className="p-0">
-          <img className="w-full h-full  p-0 m-0" src={FreshOjLogo} />
+      <Container size={380} my={100}>
+        <div className="mt-[-400] pt-[-100]">
+          <img className="" src={FreshOjLogo} />
         </div>
-        <Title
-          className="poppin-font text-white text-5x  shadow-lg shadow-black-900"
-          align="center"
-        >
-          Fresh OJ
-        </Title>
 
         <Paper withBorder shadow="sm" p={30} mt={30} radius="md">
-          <Title align="center">Welcome Back!</Title>
+          <Title align="center" className="text-orangeSoda-200">
+            Welcome Back!
+          </Title>
           <Text color="dimmed" size="lg" align="center" mt={5}>
-            Don't have an account yet?{" "}
+            Don't have an account?{" "}
             <Anchor
               component={Link}
               to="/signup"
-              className="font-medium !no-underline"
+              className="font-medium !no-underline text-tan-200"
             >
               Sign Up!
             </Anchor>
