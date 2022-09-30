@@ -45,28 +45,31 @@ export async function getLoginUser(uid: string) {
   return user;
 }
 
-export async function signUp(email: string, password: string) {
-  // created the firebaseUser with firebaseAuth
+export async function signUp(name: string, email: string, password: string) {
   const firebaseUser = await createUserWithEmailAndPassword(
     firebaseAuth,
     email,
     password
   );
-  // make a request to the auth/signup route and create a new mongo user
+  const { data: user } = await expressAPI.post<User>("/auth/signup", {
+    uid: firebaseUser.user.uid,
+    email: firebaseUser.user.email,
+    displayName: name,
+    photoURL: firebaseUser.user.photoURL,
+  });
+  console.log(user);
 
-  // return the user from the auth/signup api request
+  return user;
 }
 
 export async function logIn(email: string, password: string) {
-  // login the firebaseUser with firebaseAuth
   const firebaseUser = await signInWithEmailAndPassword(
     firebaseAuth,
     email,
     password
   );
-  // use the getLoginUser function to get the logged in mongodb user
-
-  // return the user from the getLoginUser function
+  const user = await getLoginUser(firebaseUser.user.uid);
+  return user;
 }
 
 // FORM CALLS FOR FUNCTIONS on Signup and Login PAGE

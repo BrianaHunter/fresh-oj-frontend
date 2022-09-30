@@ -10,9 +10,10 @@ import {
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
-import { signUpWithGoogle } from "../services/auth.service";
+import { signUp, signUpWithGoogle } from "../services/auth.service";
 
 export default function SignupPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [register, setRegister] = useState(false);
@@ -25,9 +26,11 @@ export default function SignupPage() {
     navigate("/");
   };
 
-  // const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  // };
+  const handleGetStarted = async () => {
+    const user = await signUp(name, email, password);
+    console.log(user);
+    navigate("/");
+  };
 
   // const form = useForm({
   //   initialValues: { name: "", email: "", password: "" },
@@ -71,7 +74,11 @@ export default function SignupPage() {
           </Button>
 
           <form>
-            <TextInput label="Name" placeholder="Name" />
+            <TextInput
+              label="Name"
+              placeholder="Name"
+              onChange={(e) => setName(e.target.value)}
+            />
             <TextInput
               value={email}
               type="email"
@@ -89,8 +96,7 @@ export default function SignupPage() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button
-              // onClick={(e) => handleSubmit(e)}
-              type="submit"
+              onClick={() => handleGetStarted()}
               className="
               hover:bg-tan-200 bg-orangeSoda-200 mt-5 "
             >

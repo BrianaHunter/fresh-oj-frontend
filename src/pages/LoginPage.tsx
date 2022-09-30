@@ -8,11 +8,11 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
-import { loginWithGoogle } from "../services/auth.service";
+import { logIn, loginWithGoogle } from "../services/auth.service";
 import FreshOjLogo from "../resources/FreshOJLogo.svg";
 
 export default function LoginPage() {
@@ -27,16 +27,13 @@ export default function LoginPage() {
     navigate("/");
   };
 
-  const form = useForm({
-    initialValues: { email: "", password: "" },
+  const handleLoginButton = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const user = await logIn(email, password);
+    console.log(user);
+    navigate("/");
+  };
 
-    // functions will be used to validate values at corresponding key
-    validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      password: (value) =>
-        value.length < 5 ? "Password must have at least 5 letters" : null,
-    },
-  });
   return (
     <AppContainer>
       <Container size={420} my={100}>
@@ -71,14 +68,13 @@ export default function LoginPage() {
           >
             Login with Google
           </Button>
-          <form onSubmit={form.onSubmit(console.log)}>
+          <form onSubmit={(e) => handleLoginButton(e)}>
             <TextInput
               value={email}
               type="email"
               mt="sm"
               label="Email"
               placeholder="Email"
-              {...form.getInputProps("email")}
               onChange={(e) => setEmail(e.target.value)}
             />
             <TextInput
@@ -87,10 +83,11 @@ export default function LoginPage() {
               mt="sm"
               label="Password"
               placeholder="Password"
-              {...form.getInputProps("password")}
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button
+              // onClick={() => handleLoginButton()}
+              type="submit"
               className="
               hover:bg-tan-200 bg-orangeSoda-200  mt-5"
             >
