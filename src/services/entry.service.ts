@@ -28,9 +28,3 @@ export async function addEntry(data: Partial<Entry>) {
 export async function deleteEntry(id: string) {
   return await expressAPI.delete<Entry>(`/entries/${id}`);
 }
-
-// export function fetchEntries() {
-//   return axios.get<EntryResults>("/entries").then((response) => response.data);
-// }
-
-// Was trying to set up the fetch function to fetch the entries from the backend

@@ -20,8 +20,9 @@ import AppHeader from "../components/AppHeader";
 import { useQuery } from "@tanstack/react-query";
 import { Entry } from "../types/entry.types";
 import { AuthContext } from "../context/auth.context";
-import { getEntries, getEntry } from "../services/entry.service";
+import { deleteEntry, getEntries, getEntry } from "../services/entry.service";
 import dayjs from "dayjs";
+import { IconTrash } from "@tabler/icons";
 
 export default function ProfilePage() {
   const [userName, setUserName] = useState();
@@ -98,10 +99,14 @@ export default function ProfilePage() {
                     >
                       <Card.Section component="a"></Card.Section>
 
+                      <div className="">
+                        <IconTrash className="close-button absolute top-0 right-0 h-7 w-7 p-1" />
+                      </div>
+
                       <Group position="apart" mt="md" mb="xs">
                         <Title order={5} weight={600}>
-                          {/* {entry.titleEntry} */}
-                          Mood: {entry.mood}
+                          {/* Title: {entry.titleEntry} */}
+                          {entry.mood}
                         </Title>
                       </Group>
                       <Modal
