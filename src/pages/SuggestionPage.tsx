@@ -23,9 +23,20 @@ export default function SuggestionPage() {
   return (
     <AppContainer>
       <Container mb={100}>
-        <h1 className="poppin-font text-white text-5xl">
-          Helpful Tips and Suggestions
-        </h1>
+        <div className="flex justify-around">
+          <h1 className="poppin-font text-white text-5xl">
+            Helpful Tips and Suggestions
+          </h1>
+          <div className="pt-5">
+            <a href="https://health.gov/myhealthfinder" title="MyHealthfinder">
+              <img
+                src="https://health.gov/themes/custom/healthfinder/images/MyHF.svg"
+                alt="MyHealthfinder"
+                className="w-44 h-auto"
+              />
+            </a>
+          </div>
+        </div>
         <div>
           <Grid>
             {suggestions?.data?.map((suggestion) => (
