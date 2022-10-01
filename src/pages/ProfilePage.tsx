@@ -101,12 +101,10 @@ export default function ProfilePage() {
                     >
                       <Card.Section component="a"></Card.Section>
 
-                      <div className="">
-                        <IconTrash
-                          className="absolute top-0 right-0 h-7 w-7 p-1 text-orangeSoda-200"
-                          onClick={() => removeEntry(selectedEntry._id)}
-                        />
-                      </div>
+                      <IconTrash
+                        className="absolute top-0 right-0 h-7 w-7 p-1 text-orangeSoda-200"
+                        onClick={() => removeEntry(entry.userId)}
+                      />
 
                       <Group position="apart" mt="md" mb="xs">
                         <Title

@@ -4,15 +4,12 @@ import {
   Button,
   Center,
   Container,
-  Input,
   Paper,
   Radio,
-  Space,
-  Textarea,
   TextInput,
   Title,
 } from "@mantine/core";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
 import AppHeader from "../components/AppHeader";
 import AppFooter from "../components/AppFooter";

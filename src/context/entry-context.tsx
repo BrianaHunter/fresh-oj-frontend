@@ -7,7 +7,7 @@ interface Props {
 
 interface EntryListContextModel {
   entryList: Entry[];
-  removeEntry: (_id: string) => void;
+  removeEntry: (userId: string) => void;
 }
 
 export const EntryListContext = createContext<EntryListContextModel>({
@@ -18,9 +18,9 @@ export const EntryListContext = createContext<EntryListContextModel>({
 export function EntryContextProvider({ children }: Props) {
   const [entryList, setEntryList] = useState<Entry[]>([]);
 
-  const removeEntry = (_id: string) => {
+  const removeEntry = (userId: string) => {
     const entryIndex = entryList.findIndex(
-      (entryObject) => entryObject._id === _id
+      (entryObject) => entryObject.userId === userId
     );
     const updatedEntryList = [...entryList];
     updatedEntryList.splice(entryIndex, 1);
