@@ -1,14 +1,11 @@
-import { Carousel, Embla } from "@mantine/carousel";
 import {
   Button,
   Container,
-  Progress,
   Title,
   Grid,
   Card,
   Group,
   Modal,
-  Center,
   TypographyStylesProvider,
   useMantineTheme,
 } from "@mantine/core";
@@ -22,17 +19,18 @@ import AppHeader from "../components/AppHeader";
 import { useQuery } from "@tanstack/react-query";
 import { Entry } from "../types/entry.types";
 import { AuthContext } from "../context/auth.context";
-import { deleteEntry, getEntries, getEntry } from "../services/entry.service";
+import { getEntries } from "../services/entry.service";
 import dayjs from "dayjs";
 import { IconTrash } from "@tabler/icons";
+import { EntryListContext } from "../context/entry-context";
 
 export default function ProfilePage() {
-  const [userName, setUserName] = useState();
   const { user } = useContext(AuthContext);
   const [showEntry, setShowEntry] = useState(false);
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const { entryList, removeEntry } = useContext(EntryListContext);
 
   const entries = useQuery(
     ["entries", user?._id, dayjs(selectedDate).format("MM/DD/YYYY")],
@@ -43,15 +41,13 @@ export default function ProfilePage() {
       )
   );
 
-  useEffect(() => {}, []);
-  //Started setting up useEffect here
-
   function showEntryDetails(entry: Entry) {
     setSelectedEntry(entry);
     setShowEntry(true);
   }
 
   const theme = useMantineTheme();
+  // used for styling the modal
 
   return (
     <div>
@@ -106,7 +102,10 @@ export default function ProfilePage() {
                       <Card.Section component="a"></Card.Section>
 
                       <div className="">
-                        <IconTrash className="close-button absolute top-0 right-0 h-7 w-7 p-1 text-orangeSoda-200" />
+                        <IconTrash
+                          className="absolute top-0 right-0 h-7 w-7 p-1 text-orangeSoda-200"
+                          onClick={() => removeEntry(selectedEntry._id)}
+                        />
                       </div>
 
                       <Group position="apart" mt="md" mb="xs">
