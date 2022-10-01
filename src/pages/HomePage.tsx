@@ -14,6 +14,7 @@ import {
   Badge,
   Text,
   Image,
+  Title,
 } from "@mantine/core";
 import { Carousel, Embla } from "@mantine/carousel";
 import { useCallback, useContext, useEffect, useState } from "react";
@@ -33,6 +34,7 @@ export default function HomePage() {
   const [embla, setEmbla] = useState<Embla | null>(null);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
   const [recentEntry, setRecentEntry] = useState<Entry[]>([]);
+  const [showEntry, setShowEntry] = useState(false);
   const { user } = useContext(AuthContext);
 
   const handleScroll = useCallback(() => {
@@ -53,6 +55,11 @@ export default function HomePage() {
       Math.floor(Math.random() * articles?.data?.length)
     );
     return article;
+  }
+
+  function showEntryDetails(entry: Entry) {
+    setSelectedEntry(entry);
+    setShowEntry(true);
   }
 
   useEffect(() => {
@@ -84,29 +91,43 @@ export default function HomePage() {
           <div className="text-center"></div>
 
           <div className="flex justify-center space-around">
-            <Card shadow="sm" p="lg" radius="md" withBorder mb={80}>
-              <Card.Section>
-                <Image
-                  src={randomArticle()?.ImageUrl}
-                  height={160}
-                  alt={randomArticle()?.Title}
-                />
-              </Card.Section>
+            <Card
+              key={entries.data?.at(0)?._id}
+              shadow="sm"
+              p="lg"
+              radius="md"
+              withBorder
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              mb={80}
+            >
+              <Card.Section component="a"></Card.Section>
 
               <Group position="apart" mt="md" mb="xs">
-                <Badge>{randomArticle()?.Title}</Badge>
+                <Title
+                  order={5}
+                  weight={600}
+                  className="poppin-font font-light text-2xl"
+                >
+                  <Badge>{entries.data?.at(0)?.titleEntry}</Badge>
+                </Title>
               </Group>
 
               <Button
+                className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
                 variant="light"
-                color="blue"
                 fullWidth
                 mt="md"
                 radius="md"
                 component="a"
-                href={randomArticle()?.AccessibleVersion}
+                onClick={() => showEntryDetails(entry)}
               >
-                Read More Here
+                Read Entry
               </Button>
             </Card>
           </div>

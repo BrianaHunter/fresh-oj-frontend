@@ -135,7 +135,7 @@ export default function ProfilePage() {
                         className="mt-[-280px]"
                       >
                         <p className="poppin-font text-5xl px-5">
-                          {entry.mood}
+                          {selectedEntry.mood}
                         </p>
                         <p className="border-solid border-b-0 border-orangeSoda-200 mt-[-10px] mb-10 px-5"></p>
                         <TypographyStylesProvider className="poppin-font text-lg px-5">
