@@ -22,7 +22,7 @@ import { AuthContext } from "../context/auth.context";
 import { getEntries } from "../services/entry.service";
 import dayjs from "dayjs";
 import { IconTrash } from "@tabler/icons";
-import { EntryListContext } from "../context/entry-context";
+// import { EntryListContext } from "../context/entry-context";
 
 export default function ProfilePage() {
   const { user } = useContext(AuthContext);
@@ -30,7 +30,17 @@ export default function ProfilePage() {
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const { entryList, removeEntry } = useContext(EntryListContext);
+  // const { entryList, removeEntry } = useContext(EntryListContext);
+  const [entryList, setEntryList] = useState<Entry[]>([]);
+
+  const removeEntry = (titleEntry: string) => {
+    const entryIndex = entryList.findIndex(
+      (entryObject) => entryObject.titleEntry === titleEntry
+    );
+    const updatedEntryList = [...entryList];
+    updatedEntryList.splice(entryIndex, 1);
+    setEntryList(updatedEntryList);
+  };
 
   const entries = useQuery(
     ["entries", user?._id, dayjs(selectedDate).format("MM/DD/YYYY")],
