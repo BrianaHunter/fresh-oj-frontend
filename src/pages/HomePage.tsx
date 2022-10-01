@@ -15,6 +15,7 @@ import {
   Text,
   Image,
   Title,
+  useMantineTheme,
 } from "@mantine/core";
 import { Carousel, Embla } from "@mantine/carousel";
 import { useCallback, useContext, useEffect, useState } from "react";
@@ -62,6 +63,8 @@ export default function HomePage() {
     setShowEntry(true);
   }
 
+  const theme = useMantineTheme();
+
   useEffect(() => {
     if (embla) {
       embla.on("scroll", handleScroll);
@@ -105,6 +108,8 @@ export default function HomePage() {
                 alignItems: "center",
               }}
               mb={80}
+              ml={60}
+              mr={60}
             >
               <Card.Section component="a"></Card.Section>
 
@@ -114,7 +119,7 @@ export default function HomePage() {
                   weight={600}
                   className="poppin-font font-light text-2xl"
                 >
-                  <Badge>{entries.data?.at(0)?.titleEntry}</Badge>
+                  {entries.data?.at(0)?.titleEntry}
                 </Title>
               </Group>
 
@@ -125,7 +130,91 @@ export default function HomePage() {
                 mt="md"
                 radius="md"
                 component="a"
-                onClick={() => showEntryDetails(entry)}
+                // onClick={() => showEntryDetails(entry)}
+              >
+                Read Entry
+              </Button>
+            </Card>
+
+            <Card
+              key={entries.data?.at(1)?._id}
+              shadow="sm"
+              p="lg"
+              radius="md"
+              withBorder
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              mb={80}
+              ml={60}
+              mr={60}
+            >
+              <Card.Section component="a"></Card.Section>
+
+              <Group position="apart" mt="md" mb="xs">
+                <Title
+                  order={5}
+                  weight={600}
+                  className="poppin-font font-light text-2xl"
+                >
+                  {entries.data?.at(1)?.titleEntry}
+                </Title>
+              </Group>
+
+              <Button
+                className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
+                variant="light"
+                fullWidth
+                mt="md"
+                radius="md"
+                component="a"
+                // onClick={() => showEntryDetails(entry)}
+              >
+                Read Entry
+              </Button>
+            </Card>
+
+            <Card
+              key={entries.data?.at(2)?._id}
+              shadow="sm"
+              p="lg"
+              radius="md"
+              withBorder
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              mb={80}
+              ml={60}
+              mr={60}
+            >
+              <Card.Section component="a"></Card.Section>
+
+              <Group position="apart" mt="md" mb="xs">
+                <Title
+                  order={5}
+                  weight={600}
+                  className="poppin-font font-light text-2xl"
+                >
+                  {entries.data?.at(2)?.titleEntry}
+                </Title>
+              </Group>
+
+              <Button
+                className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
+                variant="light"
+                fullWidth
+                mt="md"
+                radius="md"
+                component="a"
+                // onClick={() => showEntryDetails(entry)}
               >
                 Read Entry
               </Button>
