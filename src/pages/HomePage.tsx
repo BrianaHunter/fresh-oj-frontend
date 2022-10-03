@@ -90,8 +90,8 @@ export default function HomePage() {
           <div className="text-center"></div>
 
           <div className="flex justify-center space-around">
+            {/* <Grid.Col md={4} lg={4} sm={6}> */}
             <Card
-              key={entries.data?.at(0)?._id}
               shadow="sm"
               p="lg"
               radius="md"
@@ -107,17 +107,15 @@ export default function HomePage() {
               ml={60}
               mr={60}
             >
-              <Card.Section component="a"></Card.Section>
-
-              <Group position="apart" mt="md" mb="xs">
+              <Card.Section component="a">
                 <Title
                   order={5}
                   weight={600}
-                  className="poppin-font font-light text-2xl"
+                  className="poppin-font font-light text-black text-2xl"
                 >
                   {entries.data?.at(0)?.titleEntry}
                 </Title>
-              </Group>
+              </Card.Section>
 
               <Button
                 className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
@@ -133,7 +131,6 @@ export default function HomePage() {
             </Card>
 
             <Card
-              key={entries.data?.at(1)?._id}
               shadow="sm"
               p="lg"
               radius="md"
@@ -149,17 +146,24 @@ export default function HomePage() {
               ml={60}
               mr={60}
             >
-              <Card.Section component="a"></Card.Section>
-
-              <Group position="apart" mt="md" mb="xs">
-                <Title
+              <Card.Section component="a">
+                {/* <Title
                   order={5}
                   weight={600}
-                  className="poppin-font font-light text-2xl"
+                  className="poppin-font font-light text-black text-2xl"
                 >
-                  {entries.data?.at(1)?.titleEntry}
-                </Title>
-              </Group>
+                  {entries.data?.at(0)?.titleEntry}
+                </Title> */}
+                <Text weight={600}>{entries.data?.at(0)?.mood}</Text>
+              </Card.Section>
+
+              {/* <Title
+                order={5}
+                weight={600}
+                className="poppin-font font-light text-2xl"
+              >
+                {entries.data?.at(0)?.mood}{" "}
+              </Title> */}
 
               <Button
                 className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
@@ -175,7 +179,6 @@ export default function HomePage() {
             </Card>
 
             <Card
-              key={entries.data?.at(2)?._id}
               shadow="sm"
               p="lg"
               radius="md"
@@ -191,17 +194,15 @@ export default function HomePage() {
               ml={60}
               mr={60}
             >
-              <Card.Section component="a"></Card.Section>
-
-              <Group position="apart" mt="md" mb="xs">
-                <Title
+              <Card.Section component="a" className="text-black">
+                {/* <Title
                   order={5}
                   weight={600}
-                  className="poppin-font font-light text-2xl"
-                >
-                  {entries.data?.at(2)?.titleEntry}
-                </Title>
-              </Group>
+                  className="poppin-font font-light text-black text-2xl"
+                > */}
+                {entries.data?.at(2)?.titleEntry}
+                {/* </Title> */}
+              </Card.Section>
 
               <Button
                 className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
@@ -215,6 +216,7 @@ export default function HomePage() {
                 Read Entry
               </Button>
             </Card>
+            {/* </Grid.Col> */}
           </div>
           {/* 
           <Carousel

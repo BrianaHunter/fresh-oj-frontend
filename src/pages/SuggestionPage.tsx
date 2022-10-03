@@ -11,10 +11,14 @@ import {
   Grid,
   Center,
   Container,
+  Header,
+  Title,
 } from "@mantine/core";
 import AppContainer from "../components/AppContainer";
 import AppFooter from "../components/AppFooter";
 import { useQuery } from "@tanstack/react-query";
+import AppHeader from "../components/AppHeader";
+import { Link } from "react-router-dom";
 // import fontFamily from "../resources/iCielGotham-Medium.ttf";
 
 export default function SuggestionPage() {
@@ -22,20 +26,30 @@ export default function SuggestionPage() {
 
   return (
     <AppContainer>
-      <Container mb={100}>
-        <div className="flex justify-around">
-          <h1 className="poppin-font text-white text-5xl">
-            Helpful Tips and Suggestions
-          </h1>
-          <div className="pt-5">
+      <Header height={60} p="md">
+        <div className="flex justify-between items-center h-full">
+          <Link to="/" className="no-underline text-white">
+            <Title color="tan" order={4}>
+              Fresh OJ
+            </Title>
+          </Link>
+          <div>
             <a href="https://health.gov/myhealthfinder" title="MyHealthfinder">
               <img
                 src="https://health.gov/themes/custom/healthfinder/images/MyHF.svg"
                 alt="MyHealthfinder"
-                className="w-44 h-auto"
+                className=" w-32 h-auto"
               />
             </a>
           </div>
+        </div>
+      </Header>
+
+      <Container mb={100} mt={80}>
+        <div className="flex justify-around">
+          <h1 className="poppin-font font-light text-white lg:text-5xl md:text-4xl sm:text-4xl">
+            Helpful Tips and Suggestions
+          </h1>
         </div>
         <div>
           <Grid>
@@ -79,7 +93,8 @@ export default function SuggestionPage() {
 
                   <Button
                     variant="light"
-                    color="blue"
+                    className="
+                    hover:bg-tan-100 bg-orangeSoda-100 mt-5 text-white"
                     fullWidth
                     mt="md"
                     radius="md"
