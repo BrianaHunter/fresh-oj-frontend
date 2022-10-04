@@ -10,7 +10,7 @@ export default function AppContainer({ children, header }: Props) {
     <div className="bg-tan-100">
       <AppShell
         navbarOffsetBreakpoint="sm"
-        padding="md"
+        padding="xs"
         header={header}
         styles={(theme) => ({
           main: {

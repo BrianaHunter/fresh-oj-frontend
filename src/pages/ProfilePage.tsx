@@ -78,7 +78,7 @@ export default function ProfilePage() {
           />
         </div>
         <Container mb={200}>
-          <Title className="poppin-font font-extralight text-white text-7xl mb-7">
+          <Title className="poppin-font font-extralight text-white sm:text-3xl md:text-5xl lg:text-7xl mb-7">
             {user?.displayName}
           </Title>
           <div className="">
@@ -93,7 +93,7 @@ export default function ProfilePage() {
             />
           </div>
           <Container mb={100}>
-            <h1 className="poppin-font font-extralight text-white text-5xl mt-20 mb-10">
+            <h1 className="poppin-font font-extralight text-white sm:text-3xl md:text-5xl mt-20 mb-10">
               Past Entries
             </h1>
             <div>
