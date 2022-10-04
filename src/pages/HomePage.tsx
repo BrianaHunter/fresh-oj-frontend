@@ -44,6 +44,7 @@ export default function HomePage() {
     ["entries", user?._id],
     async () => await getEntries(user?._id as string)
   );
+  console.log(entries?.data);
 
   const articles = useQuery(["suggestions"], fetchSuggestion);
 
@@ -89,8 +90,7 @@ export default function HomePage() {
 
           <div className="text-center"></div>
 
-          <div className="flex justify-center space-around">
-            {/* <Grid.Col md={4} lg={4} sm={6}> */}
+          <div className="flex sm:flex-col md: flex-col lg:flex-row justify-center space-around">
             <Card
               shadow="sm"
               p="lg"
@@ -154,7 +154,7 @@ export default function HomePage() {
                 >
                   {entries.data?.at(0)?.titleEntry}
                 </Title> */}
-                <Text weight={600}>{entries.data?.at(0)?.mood}</Text>
+                <Text weight={600}>{entries.data?.at(1)?.mood}</Text>
               </Card.Section>
 
               {/* <Title
@@ -216,7 +216,6 @@ export default function HomePage() {
                 Read Entry
               </Button>
             </Card>
-            {/* </Grid.Col> */}
           </div>
           {/* 
           <Carousel

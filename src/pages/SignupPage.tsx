@@ -46,7 +46,7 @@ export default function SignupPage() {
           <Title
             align="center"
             // className="  absolute bottom-0 left-9 poppin-font font-light text-black text-7xl"
-            className="  poppin-font font-normal text-white text-7xl mt-[-50px]"
+            className="  poppin-font font-normal text-white text-7xl mt-[-50px]  z-50"
           >
             FRESH OJ
           </Title>
@@ -58,7 +58,14 @@ export default function SignupPage() {
             open mind, fresh start
           </Title>
 
-          <Paper withBorder shadow="sm" p={30} mt={30} radius="md">
+          <Paper
+            withBorder
+            shadow="sm"
+            p={30}
+            mt={30}
+            radius="md"
+            className="z-50"
+          >
             <Title align="center">Create Account</Title>
 
             <Text color="black" size="lg" align="center" mt={5}>
