@@ -16,12 +16,13 @@ import MoodDonut from "../components/MoodDonut";
 import AppContainer from "../components/AppContainer";
 import ProfilePageImage from "../resources/ProfilePageImage.jpg";
 import AppHeader from "../components/AppHeader";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { Entry } from "../types/entry.types";
 import { AuthContext } from "../context/auth.context";
-import { getEntries } from "../services/entry.service";
+import { deleteEntry, getEntries } from "../services/entry.service";
 import dayjs from "dayjs";
 import { IconTrash } from "@tabler/icons";
+import { queryClient } from "../libs/react-query";
 // import { EntryListContext } from "../context/entry-context";
 
 export default function ProfilePage() {
@@ -30,17 +31,7 @@ export default function ProfilePage() {
   const [closeEntry, setCloseEntry] = useState(true);
   const [selectedEntry, setSelectedEntry] = useState<Entry>({} as Entry);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  // const { entryList, removeEntry } = useContext(EntryListContext);
   const [entryList, setEntryList] = useState<Entry[]>([]);
-
-  const removeEntry = (titleEntry: string) => {
-    const entryIndex = entryList.findIndex(
-      (entryObject) => entryObject.titleEntry === titleEntry
-    );
-    const updatedEntryList = [...entryList];
-    updatedEntryList.splice(entryIndex, 1);
-    setEntryList(updatedEntryList);
-  };
 
   const entries = useQuery(
     ["entries", user?._id, dayjs(selectedDate).format("MM/DD/YYYY")],
@@ -50,6 +41,20 @@ export default function ProfilePage() {
         dayjs(selectedDate).format("MM/DD/YYYY")
       )
   );
+
+  const deleteEntryMutation = useMutation(deleteEntry, {
+    onSuccess: () => {
+      queryClient.invalidateQueries([
+        "entries",
+        user?._id,
+        dayjs(selectedDate).format("MM/DD/YYYY"),
+      ]);
+    },
+  });
+
+  const removeEntry = async (id: string) => {
+    await deleteEntryMutation.mutateAsync(id);
+  };
 
   function showEntryDetails(entry: Entry) {
     setSelectedEntry(entry);
@@ -113,7 +118,7 @@ export default function ProfilePage() {
 
                       <IconTrash
                         className="absolute top-0 right-0 h-7 w-7 p-1 text-orangeSoda-200"
-                        onClick={() => removeEntry(entry.titleEntry)}
+                        onClick={() => removeEntry(entry._id)}
                       />
 
                       <Group position="apart" mt="md" mb="xs">
@@ -126,7 +131,7 @@ export default function ProfilePage() {
                         </Title>
                       </Group>
 
-                      <Modal
+                      {/* <Modal
                         overlayColor={
                           theme.colorScheme === "dark"
                             ? theme.colors.gray[3]
@@ -153,7 +158,7 @@ export default function ProfilePage() {
                             }}
                           />
                         </TypographyStylesProvider>
-                      </Modal>
+                      </Modal> */}
 
                       <Button
                         className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
@@ -177,6 +182,32 @@ export default function ProfilePage() {
           </Title>
           <MoodDonut />
         </Container>
+        <Modal
+          overlayColor={
+            theme.colorScheme === "dark"
+              ? theme.colors.gray[3]
+              : theme.colors.yellow[9]
+          }
+          overlayOpacity={0.6}
+          overlayBlur={3}
+          centered
+          size="lg"
+          onClose={() => setShowEntry(false)}
+          overflow="inside"
+          opened={showEntry}
+          closeOnClickOutside={closeEntry}
+          className="mt-[-280px]"
+        >
+          <p className="poppin-font text-5xl px-5">{selectedEntry.mood}</p>
+          <p className="border-solid border-b-0 border-orangeSoda-200 mt-[-10px] mb-10 px-5"></p>
+          <TypographyStylesProvider className="poppin-font text-lg px-5">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: selectedEntry.content,
+              }}
+            />
+          </TypographyStylesProvider>
+        </Modal>
 
         <AppFooter />
       </AppContainer>
