@@ -44,7 +44,6 @@ export default function HomePage() {
     ["entries", user?._id],
     async () => await getEntries(user?._id as string)
   );
-  console.log(entries?.data);
 
   const articles = useQuery(["suggestions"], fetchSuggestion);
 
@@ -90,18 +89,20 @@ export default function HomePage() {
 
           <div className="text-center"></div>
 
-          <div className="flex sm:flex-col md: flex-col lg:flex-row justify-center space-around">
+          <div className="flex sm:flex-col md: flex-col lg:flex-row justify-center space-around mt-10">
             <Card
               shadow="sm"
               p="lg"
               radius="md"
               withBorder
               style={{
-                height: "100%",
-                width: "100%",
+                height: "75%",
+                width: "75%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                paddingTop: "40px",
+                paddingBottom: "40px",
               }}
               mb={80}
               ml={60}
@@ -111,23 +112,17 @@ export default function HomePage() {
                 <Title
                   order={5}
                   weight={600}
-                  className="poppin-font font-light text-black text-2xl"
+                  className="poppin-font font-light text-black text-3xl"
+                >
+                  Most recent entry:
+                </Title>
+                <Text
+                  weight={600}
+                  className="poppin-font font-light text-black text-xl"
                 >
                   {entries.data?.at(0)?.titleEntry}
-                </Title>
+                </Text>
               </Card.Section>
-
-              <Button
-                className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
-                variant="light"
-                fullWidth
-                mt="md"
-                radius="md"
-                component="a"
-                // onClick={() => showEntryDetails(entry)}
-              >
-                Read Entry
-              </Button>
             </Card>
 
             <Card
@@ -136,46 +131,33 @@ export default function HomePage() {
               radius="md"
               withBorder
               style={{
-                height: "100%",
-                width: "100%",
+                height: "75%",
+                width: "75%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                paddingTop: "40px",
+                paddingBottom: "40px",
               }}
               mb={80}
               ml={60}
               mr={60}
             >
               <Card.Section component="a">
-                {/* <Title
+                <Title
                   order={5}
                   weight={600}
-                  className="poppin-font font-light text-black text-2xl"
+                  className="poppin-font font-light text-black text-3xl"
                 >
-                  {entries.data?.at(0)?.titleEntry}
-                </Title> */}
-                <Text weight={600}>{entries.data?.at(1)?.mood}</Text>
+                  Most recent mood:
+                </Title>
+                <Text
+                  weight={600}
+                  className="poppin-font font-light text-black text-xl"
+                >
+                  {entries.data?.at(0)?.mood}
+                </Text>
               </Card.Section>
-
-              {/* <Title
-                order={5}
-                weight={600}
-                className="poppin-font font-light text-2xl"
-              >
-                {entries.data?.at(0)?.mood}{" "}
-              </Title> */}
-
-              <Button
-                className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
-                variant="light"
-                fullWidth
-                mt="md"
-                radius="md"
-                component="a"
-                // onClick={() => showEntryDetails(entry)}
-              >
-                Read Entry
-              </Button>
             </Card>
 
             <Card
@@ -184,73 +166,35 @@ export default function HomePage() {
               radius="md"
               withBorder
               style={{
-                height: "100%",
-                width: "100%",
+                height: "75%",
+                width: "75%",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                paddingTop: "40px",
+                paddingBottom: "40px",
               }}
               mb={80}
               ml={60}
               mr={60}
             >
               <Card.Section component="a" className="text-black">
-                {/* <Title
+                <Title
                   order={5}
                   weight={600}
-                  className="poppin-font font-light text-black text-2xl"
-                > */}
-                {entries.data?.at(2)?.titleEntry}
-                {/* </Title> */}
+                  className="poppin-font font-light text-black text-3xl"
+                >
+                  Total Entries:
+                </Title>
+                <Text
+                  weight={600}
+                  className="poppin-font font-light text-black text-xl"
+                >
+                  {entries?.data?.length} entries
+                </Text>
               </Card.Section>
-
-              <Button
-                className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
-                variant="light"
-                fullWidth
-                mt="md"
-                radius="md"
-                component="a"
-                // onClick={() => showEntryDetails(entry)}
-              >
-                Read Entry
-              </Button>
             </Card>
           </div>
-          {/* 
-          <Carousel
-            dragFree
-            slideSize="30%"
-            slideGap="md"
-            height={200}
-            getEmblaApi={setEmbla}
-            initialSlide={1}
-            mb={80}
-          >
-            <Carousel.Slide className="bg-white">
-              {entries.data?.at(0)?.titleEntry}
-            </Carousel.Slide>
-            <Carousel.Slide className="bg-white">
-              {entries.data?.at(0)?.mood}
-            </Carousel.Slide>
-            <Carousel.Slide className="bg-white">
-              {randomArticle()?.ImageUrl}
-            </Carousel.Slide>
-            <Carousel.Slide className="bg-white">Frequent</Carousel.Slide>
-            <Carousel.Slide className="bg-white">Frequent</Carousel.Slide>
-            {/* Tried to get a random article to show up here... Didn't have any luck yet */}
-          {/* ...other slides */}
-          {/* </Carousel> */}
-          {/* <Progress
-            value={scrollProgress}
-            styles={{
-              bar: { transitionDuration: "0ms" },
-              root: { maxWidth: 320 },
-            }}
-            size="sm"
-            mt="xl"
-            mx="auto"
-          /> */}
         </Stack>
 
         <AppFooter />
