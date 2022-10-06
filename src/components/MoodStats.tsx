@@ -1,75 +1,100 @@
-import React, { useContext } from "react";
-import {
-  RingProgress,
-  Text,
-  SimpleGrid,
-  Paper,
-  Center,
-  Group,
-} from "@mantine/core";
-import { IconArrowUpRight, IconArrowDownRight } from "@tabler/icons";
-import { AuthContext } from "../context/auth.context";
 import { useQuery } from "@tanstack/react-query";
+import React, { useContext, useState } from "react";
+import { PieChart } from "react-minimal-pie-chart";
+import { AuthContext } from "../context/auth.context";
 import { getEntries } from "../services/entry.service";
+import Moods from "./Moods";
+import { RingProgress, Text } from "@mantine/core";
 
-interface StatsRingMoodsProps {
-  data: {
-    label: string;
-    stats: string;
-    progress: number;
-    color: string;
-    icon: "up" | "down";
-  }[];
-}
-
-const icons = {
-  up: IconArrowUpRight,
-  down: IconArrowDownRight,
-};
-
-export default function MoodStats({ data }: StatsRingMoodsProps) {
+export default function MoodDonut() {
   const { user } = useContext(AuthContext);
-  const moods = [
-    { title: "Happy", color: "#E38627" },
-    { title: "Sad", color: "#C13C37" },
-    { title: "Overjoyed", color: "#6A2105" },
-    { title: "Mad", color: "#fff" },
-    { title: "Okay", color: "#C17B37" },
-    { title: "Anxious", color: "#2B2135" },
-  ];
 
   const entries = useQuery(
     ["entries", user?._id],
     async () => await getEntries(user?._id as string)
   );
 
-  const stats = data.map((moods) => {
-    const Icon = [moods.icon];
-    return (
-      <Paper withBorder radius="md" p="xs" key={moods.label}>
-        <Group>
-          <RingProgress
-            size={80}
-            roundCaps
-            thickness={8}
-            sections={[{ value: moods.progress, color: moods.color }]}
-          />
+  const happyMoods = entries?.data?.filter(
+    (entry) => entry.mood === "Happy"
+  ).length;
+  const sadMoods = entries?.data?.filter(
+    (entry) => entry.mood === "Sad"
+  ).length;
+  const overjoyedMoods = entries?.data?.filter(
+    (entry) => entry.mood === "Overjoyed"
+  ).length;
+  const madMoods = entries?.data?.filter(
+    (entry) => entry.mood === "Mad"
+  ).length;
+  const okayMoods = entries?.data?.filter(
+    (entry) => entry.mood === "Okay"
+  ).length;
+  const anxiousMoods = entries?.data?.filter(
+    (entry) => entry.mood === "Anxious"
+  ).length;
 
-          <div>
-            <Text color="dimmed" size="xs" transform="uppercase" weight={700}>
-              {moods.label}
-            </Text>
-            <Text weight={700} size="xl">
-              {moods.stats}
-            </Text>
-          </div>
-        </Group>
-      </Paper>
-    );
-  });
+  // const hasNoMoods =
+  //   happyMoods === 0 &&
+  //   sadMoods === 0 &&
+  //   overjoyedMoods === 0 &&
+  //   madMoods === 0 &&
+  //   okayMoods === 0 &&
+  //   anxiousMoods === 0;
+
+  // const hasHappyMoods = happyMoods !== 0;
+  // const hasSadoods = sadMoods !== 0;
+  // const hasOverjoyedMoods = overjoyedMoods !== 0;
+  // const hasMadMoods = madMoods !== 0;
+  // const hasOkayMoods = okayMoods !== 0;
+  // const hasAnxiousMoods = anxiousMoods !== 0;
+
+  // const totalMoods =
+  //   happyMoods as number +
+  //   sadMoods as number+
+  //   overjoyedMoods as number +
+  //   madMoods as number +
+  //   okayMoods as number+
+  //   anxiousMoods as number;
+
+  // const happyPercent = parseInt(((happyMoods / totalMoods) * 100).toFixed(1));
+  // const sadPercent = parseInt(((sadMoods / totalMoods) * 100).toFixed(1));
+  // const overjoyedPercent = parseInt(
+  //   ((overjoyedMoods / totalMoods) * 100).toFixed(1)
+  // );
+  // const madPercent = parseInt(((madMoods / totalMoods) * 100).toFixed(1));
+  // const okayPercent = parseInt(((okayMoods / totalMoods) * 100).toFixed(1));
+  // const anxiousPercent = parseInt(
+  //   ((anxiousMoods / totalMoods) * 100).toFixed(1)
+  // );
+
   return (
-    <SimpleGrid cols={3} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
-      {stats}
-    </SimpleGrid>
+    <div>
+      <RingProgress
+        size={250}
+        thickness={25}
+        roundCaps
+        label={
+          <Text size="xs" align="center">
+            Recent Moods
+          </Text>
+        }
+        sections={[
+          { tooltip: "Happy", value: happyMoods as number, color: "#E38627" },
+          { tooltip: "Sad", value: sadMoods as number, color: "#C13C37" },
+          {
+            tooltip: "Overjoyed",
+            value: overjoyedMoods as number,
+            color: "#6A2105",
+          },
+          { tooltip: "Mad", value: madMoods as number, color: "#fff" },
+          { tooltip: "Okay", value: okayMoods as number, color: "#C17B37" },
+          {
+            tooltip: "Anxious",
+            value: anxiousMoods as number,
+            color: "#2B2135",
+          },
+        ]}
+      />
+    </div>
   );
 }

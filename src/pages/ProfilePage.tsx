@@ -97,7 +97,7 @@ export default function ProfilePage() {
             <Title className="poppin-font font-extralight text-3xl text-white pt-10 pb-5">
               Recent Moods
             </Title>
-            <MoodStats data={[]} />
+            <MoodStats />
             <h1 className="poppin-font font-extralight text-white sm:text-3xl md:text-5xl mt-20 mb-10">
               Past Entries
             </h1>
