@@ -22,7 +22,7 @@ import { deleteEntry, getEntries } from "../services/entry.service";
 import dayjs from "dayjs";
 import { IconTrash } from "@tabler/icons";
 import { queryClient } from "../libs/react-query";
-import MoodStats from "../components/MoodStats";
+import MoodDonut from "../components/MoodStats";
 
 // import { EntryListContext } from "../context/entry-context";
 
@@ -94,7 +94,7 @@ export default function ProfilePage() {
             />
           </div>
           <Container mb={100}>
-            <MoodStats />
+            <MoodDonut />
             <h1 className="poppin-font font-extralight text-white sm:text-3xl md:text-5xl mt-0 mb-10">
               Past Entries
             </h1>
