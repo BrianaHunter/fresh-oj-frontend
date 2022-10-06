@@ -68,13 +68,13 @@ export default function MoodDonut() {
   // );
 
   return (
-    <div>
+    <div className="flex justify-center pt-10 pb-0">
       <RingProgress
-        size={250}
-        thickness={25}
+        size={300}
+        thickness={30}
         roundCaps
         label={
-          <Text size="xs" align="center">
+          <Text size="xl" align="center" color="white">
             Recent Moods
           </Text>
         }
