@@ -12,7 +12,6 @@ import {
 import { useContext, useEffect, useState } from "react";
 import AppFooter from "../components/AppFooter";
 import { DatePicker } from "@mantine/dates";
-import MoodDonut from "../components/MoodDonut";
 import AppContainer from "../components/AppContainer";
 import ProfilePageImage from "../resources/ProfilePageImage.jpg";
 import AppHeader from "../components/AppHeader";
@@ -23,6 +22,8 @@ import { deleteEntry, getEntries } from "../services/entry.service";
 import dayjs from "dayjs";
 import { IconTrash } from "@tabler/icons";
 import { queryClient } from "../libs/react-query";
+import MoodStats from "../components/MoodStats";
+
 // import { EntryListContext } from "../context/entry-context";
 
 export default function ProfilePage() {
@@ -93,6 +94,10 @@ export default function ProfilePage() {
             />
           </div>
           <Container mb={100}>
+            <Title className="poppin-font font-extralight text-3xl text-white pt-10 pb-5">
+              Recent Moods
+            </Title>
+            <MoodStats data={[]} />
             <h1 className="poppin-font font-extralight text-white sm:text-3xl md:text-5xl mt-20 mb-10">
               Past Entries
             </h1>
@@ -131,35 +136,6 @@ export default function ProfilePage() {
                         </Title>
                       </Group>
 
-                      {/* <Modal
-                        overlayColor={
-                          theme.colorScheme === "dark"
-                            ? theme.colors.gray[3]
-                            : theme.colors.yellow[9]
-                        }
-                        overlayOpacity={0.6}
-                        overlayBlur={3}
-                        centered
-                        size="lg"
-                        onClose={() => setShowEntry(false)}
-                        overflow="inside"
-                        opened={showEntry}
-                        closeOnClickOutside={closeEntry}
-                        className="mt-[-280px]"
-                      >
-                        <p className="poppin-font text-5xl px-5">
-                          {selectedEntry.mood}
-                        </p>
-                        <p className="border-solid border-b-0 border-orangeSoda-200 mt-[-10px] mb-10 px-5"></p>
-                        <TypographyStylesProvider className="poppin-font text-lg px-5">
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: selectedEntry.content,
-                            }}
-                          />
-                        </TypographyStylesProvider>
-                      </Modal> */}
-
                       <Button
                         className=" hover:bg-tan-200 bg-orangeSoda-200 text-white"
                         variant="light"
@@ -177,10 +153,6 @@ export default function ProfilePage() {
               </Grid>
             </div>
           </Container>
-          <Title className="poppin-font font-extralight text-5xl text-white mb-10">
-            Recent Moods
-          </Title>
-          <MoodDonut />
         </Container>
         <Modal
           overlayColor={
