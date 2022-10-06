@@ -105,9 +105,9 @@ export default function SignupPage() {
           </Paper>
         </div>
       </Container>
-      <div className=" absolute right-[780px] bottom-[445px] z-30">
+      {/* <div className=" absolute right-[780px] bottom-[445px] z-30">
         <img className=" h-52 w-52  " src={orangeSliceImage} />
-      </div>
+      </div> */}
     </AppContainer>
   );
 }
