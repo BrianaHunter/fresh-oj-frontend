@@ -12,8 +12,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AppContainer from "../components/AppContainer";
 import { signUp, signUpWithGoogle } from "../services/auth.service";
-import FreshOjLogo from "../resources/FreshOJLogo.svg";
-import orangeImage from "../resources/orangeImage.svg";
+import orangeSliceImage from "../resources/orangeSliceImage.svg";
 
 export default function SignupPage() {
   const [name, setName] = useState("");
@@ -36,36 +35,21 @@ export default function SignupPage() {
   return (
     <AppContainer>
       <Container size={420} my={100}>
-        {/* <Center className=" w-72 h-72 opacity-100">
-          <img src={FreshOjLogo} />
-        </Center> */}
         <div className="relative">
-          <div className="absolute right-28">
-            <img className=" h-9/12 w-9/12" src={orangeImage} />
-          </div>
           <Title
             align="center"
-            // className="  absolute bottom-0 left-9 poppin-font font-light text-black text-7xl"
-            className="  poppin-font font-normal text-white text-7xl mt-[-50px]  z-50"
+            className="  poppin-font font-normal text-white text-7xl mt-[-50px] z-0"
           >
             FRESH OJ
           </Title>
           <Title
             align="center"
-            // className=" absolute top-0 left-24  poppin-font font-normal text-black text-base mt-1"
             className=" poppin-font font-normal text-white text-base mt-1"
           >
             open mind, fresh start
           </Title>
 
-          <Paper
-            withBorder
-            shadow="sm"
-            p={30}
-            mt={30}
-            radius="md"
-            className="z-50"
-          >
+          <Paper withBorder shadow="sm" p={30} mt={30} radius="md">
             <Title align="center">Create Account</Title>
 
             <Text color="black" size="lg" align="center" mt={5}>
@@ -121,6 +105,9 @@ export default function SignupPage() {
           </Paper>
         </div>
       </Container>
+      <div className=" absolute right-[780px] bottom-[445px] z-30">
+        <img className=" h-52 w-52  " src={orangeSliceImage} />
+      </div>
     </AppContainer>
   );
 }
